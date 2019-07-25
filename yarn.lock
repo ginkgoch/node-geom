@@ -1253,6 +1253,11 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
+ginkgoch-buffer-io@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ginkgoch-buffer-io/-/ginkgoch-buffer-io-1.1.0.tgz#7d5a5780c483ad59c25d1bf7b3405327abe2399f"
+  integrity sha512-w0B2hfzW0MlidR4mKtj4cjUtT/2fF1qeufNUdejjMnC8DiAjb1SR+m1+fo51UXqsBwh8NDU1NWpPhmMObMZbQw==
+
 glob@^7.1.1, glob@^7.1.2, glob@^7.1.3:
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.4.tgz#aa608a2f6c577ad357e1ae5a5c26d9a8d1969255"

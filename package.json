@@ -20,6 +20,7 @@
     "build": "./node_modules/.bin/tsc"
   },
   "dependencies": {
+    "ginkgoch-buffer-io": "^1.1.0",
     "jsts": "^2.0.6",
     "lodash": "^4.17.15"
   }
