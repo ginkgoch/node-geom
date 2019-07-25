@@ -1,3 +1,4 @@
+import * as jsts from 'jsts';
 import Ring from "./Ring";
 import Point from "./Point";
 import Polygon from "./Polygon";
