@@ -15,4 +15,14 @@ export default class MultiPolygon extends GeometryCollectionBase<Polygon> {
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createMultiPolygon(this.children.map(l => l._ts() as jsts.geom.Polygon));
     }
+
+    static _from(multiPolygon: jsts.geom.MultiPolygon): MultiPolygon {
+        const geom = new MultiPolygon();
+        const polygonCount = multiPolygon.getNumGeometries();
+        for(let i = 0; i < polygonCount; i++) {
+            geom.children.push(Polygon._from(<jsts.geom.Polygon>multiPolygon.getGeometryN(i)));
+        }
+
+        return geom;
+    } 
 }

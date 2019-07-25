@@ -35,4 +35,17 @@ export default class Polygon extends Geometry {
             this.internalRings.map(r => r._ts() as jsts.geom.LinearRing)
         );
     }
+
+    static _from(polygon: jsts.geom.Polygon): Polygon {
+        const geom = new Polygon(
+            Ring._from(polygon.getExteriorRing())
+        );
+
+        const innerRingCount = polygon.getNumInteriorRing();
+        for (let i = 0; i < innerRingCount; i++) {
+            geom.internalRings.push(Ring._from(<jsts.geom.LinearRing>polygon.getInteriorRingN(i)));
+        }
+
+        return geom;
+    }
 }

@@ -31,4 +31,8 @@ export default class LineString extends Geometry {
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createLineString(this._coordinates.map(c => new jsts.geom.Coordinate(c.x, c.y)));
     }
+
+    static _from(line: jsts.geom.LineString): LineString {
+        return new LineString(line.getCoordinates().map(c => ({ x: c.x, y: c.y })));
+    }
 }
