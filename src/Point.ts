@@ -31,4 +31,8 @@ export default class Point extends Geometry {
         const coordinate = new jsts.geom.Coordinate(this.x, this.y);
         return Geometry._factory.createPoint(coordinate);
     }
+
+    static _from(point: jsts.geom.Point): Point {
+        return new Point(point.getX(), point.getY());
+    }
 }

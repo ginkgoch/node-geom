@@ -4,6 +4,7 @@ import Geometry from "./Geometry";
 import ICoordinate from "./base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 
+//TODO: rename to LinearRing
 export default class Ring extends Geometry {
     _coordinates: ICoordinate[];
 
@@ -20,7 +21,7 @@ export default class Ring extends Geometry {
             this._coordinates.push(first);
         }
     }
-    
+
     get type(): GeometryType {
         return GeometryType.Polygon;
     }
@@ -41,5 +42,9 @@ export default class Ring extends Geometry {
 
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createLinearRing(this._coordinates.map(c => new jsts.geom.Coordinate(c.x, c.y)));
+    }
+
+    static _from(ring: jsts.geom.LinearRing): Ring {
+        return new Ring(ring.getCoordinates().map(c => ({ x: c.x, y: c.y })));
     }
 }

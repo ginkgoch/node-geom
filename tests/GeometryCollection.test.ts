@@ -24,8 +24,8 @@ describe('GeometryCollection', () => {
         const geom = new GeometryCollection([
             new Point(1, 2),
             new LineString([
-                {x: 23.4, y: -87},
-                {x: -23.4, y: 87}
+                { x: 23.4, y: -87 },
+                { x: -23.4, y: 87 }
             ])
         ]);
 

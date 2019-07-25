@@ -15,4 +15,8 @@ export default class MultiPoint extends GeometryCollectionBase<Point> {
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createMultiPoint(this.children.map(c => c._ts() as jsts.geom.Point));
     }
+
+    static _from(multiPoint: jsts.geom.MultiPoint): MultiPoint {
+        return new MultiPoint(multiPoint.getCoordinates().map(c => new Point(c.x, c.y)));
+    }
 }
