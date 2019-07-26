@@ -3,6 +3,7 @@ import ICoordinate from "./base/ICoordinate"
 import Envelope from "./Envelope";
 import GeomUtils from "./shared/GeomUtils";
 import * as jsts from 'jsts';
+import WkbUtils from "./shared/WkbUtils";
 
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
@@ -53,5 +54,7 @@ export default abstract class Geometry {
         return wkt;
     }
 
-    // abstract wkb(): Buffer;
+    wkb(bigEndian = false): Buffer {
+        return WkbUtils.geomToWkb(this, bigEndian);
+    }
 }

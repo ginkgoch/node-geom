@@ -35,31 +35,7 @@ export default class Point extends Geometry {
         return Geometry._factory.createPoint(coordinate);
     }
 
-    static _from(wkb: Buffer): Point;
-    static _from(point: jsts.geom.Point): Point; 
-    static _from(param: Buffer|jsts.geom.Point): Point{
-        if (param instanceof Buffer) {
-            return Point._fromWkb(param);
-        } else {
-            return new Point(param.getX(), param.getY());
-        }
-    }
-
-    wkb(bigEndian = false): Buffer {
-        const size = 1 + Constants.SIZE_POINT;
-        const buff = Buffer.alloc(size);
-        const writer = new BufferWriter(buff);
-        WkbUtils.writeByteEndian(writer, bigEndian);
-        WkbUtils.writeDouble(writer, this.x, bigEndian);
-        WkbUtils.writeDouble(writer, this.y, bigEndian);
-        return buff;
-    }
-
-    private static _fromWkb(buff: Buffer) {
-        const reader = new BufferReader(buff);
-        const bigEndian = WkbUtils.readByteEndian(reader);
-        const x = WkbUtils.readDouble(reader, bigEndian);
-        const y = WkbUtils.readDouble(reader, bigEndian);
-        return new Point(x, y);
+    static _from(point: jsts.geom.Point): Point {
+        return new Point(point.getX(), point.getY());
     }
 }

@@ -1,6 +1,6 @@
 import Polygon from "../src/Polygon";
 import Utils from "./Utils";
-import Ring from "../src/Ring";
+import LinearRing from "../src/LinearRing";
 
 describe('Polygon', () => {
     it('constructor', () => {
@@ -22,8 +22,8 @@ describe('Polygon', () => {
         const hole = [[2, 2], [4, 4], [6, 6], [2, 2]];
 
         let polygon = new Polygon(
-            new Ring(shell.map(c => ({ x: c[0], y: c[1] }))), 
-            new Ring(hole.map(c => ({ x: c[0], y: c[1] })))); 
+            new LinearRing(shell.map(c => ({ x: c[0], y: c[1] }))), 
+            new LinearRing(hole.map(c => ({ x: c[0], y: c[1] })))); 
 
         expect(polygon.externalRing.coordinates().length).toBe(4);
         expect(polygon.internalRings.length).toBe(1);
@@ -32,7 +32,7 @@ describe('Polygon', () => {
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2),(2 2,4 4,6 6,2 2))');
 
         polygon = new Polygon(
-            new Ring(shell.map(c => ({ x: c[0], y: c[1] })))
+            new LinearRing(shell.map(c => ({ x: c[0], y: c[1] })))
         ); 
 
         wkt = polygon.wkt();

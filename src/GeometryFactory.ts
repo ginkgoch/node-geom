@@ -1,5 +1,5 @@
 import * as jsts from 'jsts';
-import Ring from "./Ring";
+import LinearRing from "./LinearRing";
 import Point from "./Point";
 import Polygon from "./Polygon";
 import Geometry from "./Geometry";
@@ -16,7 +16,8 @@ export default class GeometryFactory {
         if (param instanceof jsts.geom.Geometry) {
             return GeometryFactory._createByGeom(param);
         } else if (param instanceof Buffer) {
-            throw new Error('Not implemented.');
+            // return WkbUtils.wkbToGeom(param);
+            throw new Error();
         } else {
             return GeometryFactory._createByWkt(param);
         }
@@ -35,7 +36,7 @@ export default class GeometryFactory {
         } else if (geom instanceof jsts.geom.LineString) {
             return LineString._from(geom);
         } else if (geom instanceof jsts.geom.LinearRing) {
-            return Ring._from(geom);
+            return LinearRing._from(geom);
         } else if (geom instanceof jsts.geom.Polygon) {
             return Polygon._from(geom);
         } else if (geom instanceof jsts.geom.MultiLineString) {
