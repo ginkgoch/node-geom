@@ -1,6 +1,7 @@
 import Point from "../src/Point";
 import Utils from "./Utils";
 import { GeometryType } from "../src/GeometryType";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('Point', () => {
     it('constructor', () => {
@@ -59,4 +60,12 @@ describe('Point', () => {
         const wkt = p.wkt();
         expect(wkt).toEqual('POINT(23.4 45.6)');
     });
+
+    it('wkb', () => {
+        const p1 = new Point(23.4, 45.6);
+        const wkb = p1.wkb();
+        
+        const p2 = GeometryFactory.create(wkb);
+        expect(p2).toEqual(p1);
+    })
 });

@@ -5,6 +5,7 @@ import Polygon from "./Polygon";
 import Geometry from "./Geometry";
 import MultiPoint from "./MultiPoint";
 import LineString from "./LineString";
+import WkbUtils from './shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
 
@@ -16,8 +17,7 @@ export default class GeometryFactory {
         if (param instanceof jsts.geom.Geometry) {
             return GeometryFactory._createByGeom(param);
         } else if (param instanceof Buffer) {
-            // return WkbUtils.wkbToGeom(param);
-            throw new Error();
+            return WkbUtils.wkbToGeom(param);
         } else {
             return GeometryFactory._createByWkt(param);
         }
