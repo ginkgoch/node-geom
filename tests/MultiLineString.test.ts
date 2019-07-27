@@ -58,4 +58,11 @@ describe('MultiLineString', () => {
         const wkt = ml.wkt();
         expect(wkt).toEqual('MULTILINESTRING((1 2,10.9 -2.88),(-1 20,-10.9 -2.88))');
     });
+
+    it('wkb', () => {
+        const wkt = 'MULTILINESTRING((1 2,10.9 -2.88),(-1 20,-10.9 -2.88))';
+        const wkb = '010500000002000000010200000002000000000000000000f03f0000000000000040cdcccccccccc25400ad7a3703d0a07c0010200000002000000000000000000f0bf0000000000003440cdcccccccccc25c00ad7a3703d0a07c0';
+
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
+    });
 });

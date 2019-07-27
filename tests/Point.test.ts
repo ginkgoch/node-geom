@@ -63,9 +63,14 @@ describe('Point', () => {
 
     it('wkb', () => {
         const p1 = new Point(23.4, 45.6);
-        const wkb = p1.wkb();
+        let wkb = p1.wkb();
         
         const p2 = GeometryFactory.create(wkb);
         expect(p2).toEqual(p1);
+
+        wkb = Buffer.from('AQEAAAAAAAAAAAAkQAAAAAAAACRA', 'base64');
+        const p3 = GeometryFactory.create(wkb);
+        const p4 = new Point(10, 10);
+        expect(p3).toEqual(p4);
     })
 });

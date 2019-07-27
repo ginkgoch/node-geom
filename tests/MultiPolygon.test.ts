@@ -2,6 +2,7 @@ import LinearRing from "../src/LinearRing";
 import Utils from "./Utils";
 import Polygon from "../src/Polygon";
 import MultiPolygon from "../src/MultiPolygon";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('MultiPolygon', () => {
     it('constructor', () => {
@@ -36,5 +37,11 @@ describe('MultiPolygon', () => {
 
         const wkt = mp.wkt();
         expect(wkt).toEqual('MULTIPOLYGON(((0 0,30 0,30 30,0 0)),((10 10,130 10,130 130,10 10)))');
+    });
+
+    it('wkb', () => {
+        const wkt = 'MULTIPOLYGON(((0 0,30 0,30 30,0 0)),((10 10,130 10,130 130,10 10)))';
+        const wkb = '01060000000200000001030000000100000004000000000000000000000000000000000000000000000000003e4000000000000000000000000000003e400000000000003e40000000000000000000000000000000000103000000010000000400000000000000000024400000000000002440000000000040604000000000000024400000000000406040000000000040604000000000000024400000000000002440';
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
     });
 });

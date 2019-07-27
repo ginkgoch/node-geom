@@ -1,6 +1,7 @@
 import Polygon from "../src/Polygon";
 import Utils from "./Utils";
 import LinearRing from "../src/LinearRing";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('Polygon', () => {
     it('constructor', () => {
@@ -37,5 +38,11 @@ describe('Polygon', () => {
 
         wkt = polygon.wkt();
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2))');
+    });
+
+    it('wkb', () => {
+        const wkt = 'POLYGON((1 2,3 4,5 6,1 2))';
+        const wkb = '01030000000100000004000000000000000000f03f00000000000000400000000000000840000000000000104000000000000014400000000000001840000000000000f03f0000000000000040';
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
     });
 });

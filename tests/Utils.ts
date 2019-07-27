@@ -1,6 +1,7 @@
 import _ from "lodash";
 import ICoordinate from "../src/base/ICoordinate";
 import Geometry from "../src/Geometry";
+import GeometryFactory from "../src/GeometryFactory";
 
 export default class Utils {
     static randomPoint() {
@@ -39,5 +40,11 @@ export default class Utils {
         expect(json).toHaveProperty('type');
         expect(json).toHaveProperty('coordinates');
         expect(json.type).toEqual(expectedTypeName);
+    }
+
+    static validateWkbAndWktAreEqual(wkt: string, wkb: string) {
+        const geom1 = GeometryFactory.create(wkt);
+        const geom2 = GeometryFactory.create(Buffer.from(wkb, 'hex'));
+        expect(geom2).toEqual(geom1);
     }
 }

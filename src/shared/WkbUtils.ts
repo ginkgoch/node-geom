@@ -180,6 +180,10 @@ export default class WkbUtils {
         const count = WkbUtils._readInt32(reader, bigEndian);
         const multiPolygon = new MultiPolygon();
         for (let i = 0; i < count; i++) {
+            const currentBigEndian = WkbUtils._readByteEndian(reader);
+            const currentGeomType = WkbUtils._readGeomType(reader, currentBigEndian);
+            assert(currentGeomType === GeometryType.Polygon, 'Non-Polygon in MultiPolygon.')
+
             const polygon = WkbUtils._readPolygon(reader, bigEndian);
             multiPolygon.children.push(polygon);
         }

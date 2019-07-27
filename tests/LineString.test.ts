@@ -1,6 +1,7 @@
 import Utils from "./Utils";
 import LineString from "../src/LineString";
 import { GeometryType } from "../src/GeometryType";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('LineString', () => {
     it('constructor', () => {
@@ -62,4 +63,10 @@ describe('LineString', () => {
         const wkt = line.wkt();
         expect(wkt).toEqual('LINESTRING(0 0,100 100)');
     })
+
+    it('wkb', () => {
+        const wkt = 'LINESTRING(0 0,100 100)';
+        const wkb = '0102000000020000000000000000000000000000000000000000000000000059400000000000005940';
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
+    });
 });
