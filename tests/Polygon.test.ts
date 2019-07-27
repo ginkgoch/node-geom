@@ -1,6 +1,7 @@
 import Polygon from "../src/Polygon";
 import Utils from "./Utils";
-import Ring from "../src/Ring";
+import LinearRing from "../src/LinearRing";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('Polygon', () => {
     it('constructor', () => {
@@ -22,8 +23,8 @@ describe('Polygon', () => {
         const hole = [[2, 2], [4, 4], [6, 6], [2, 2]];
 
         let polygon = new Polygon(
-            new Ring(shell.map(c => ({ x: c[0], y: c[1] }))), 
-            new Ring(hole.map(c => ({ x: c[0], y: c[1] })))); 
+            new LinearRing(shell.map(c => ({ x: c[0], y: c[1] }))), 
+            new LinearRing(hole.map(c => ({ x: c[0], y: c[1] })))); 
 
         expect(polygon.externalRing.coordinates().length).toBe(4);
         expect(polygon.internalRings.length).toBe(1);
@@ -32,10 +33,16 @@ describe('Polygon', () => {
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2),(2 2,4 4,6 6,2 2))');
 
         polygon = new Polygon(
-            new Ring(shell.map(c => ({ x: c[0], y: c[1] })))
+            new LinearRing(shell.map(c => ({ x: c[0], y: c[1] })))
         ); 
 
         wkt = polygon.wkt();
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2))');
+    });
+
+    it('wkb', () => {
+        const wkt = 'POLYGON((1 2,3 4,5 6,1 2))';
+        const wkb = '01030000000100000004000000000000000000f03f00000000000000400000000000000840000000000000104000000000000014400000000000001840000000000000f03f0000000000000040';
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
     });
 });

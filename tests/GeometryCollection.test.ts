@@ -32,4 +32,10 @@ describe('GeometryCollection', () => {
         const wkt = geom.wkt();
         expect(wkt).toEqual('GEOMETRYCOLLECTION(POINT(1 2),LINESTRING(23.4 -87,-23.4 87))');
     });
+
+    it('wkb', () => {
+        const wkt = 'GEOMETRYCOLLECTION(POINT(1 2),LINESTRING(23.4 -87,-23.4 87))';
+        const wkb = '0107000000020000000101000000000000000000f03f000000000000004001020000000200000066666666666637400000000000c055c066666666666637c00000000000c05540';
+        Utils.validateWkbAndWktAreEqual(wkt, wkb);
+    });
 });

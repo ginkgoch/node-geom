@@ -3,7 +3,7 @@ import GeometryFactory from "../src/GeometryFactory";
 import LineString from "../src/LineString";
 import Utils from "./Utils";
 import Geometry from "../src/Geometry";
-import Ring from "../src/Ring";
+import LinearRing from "../src/LinearRing";
 import Polygon from "../src/Polygon";
 import MultiPoint from "../src/MultiPoint";
 import MultiLineString from "../src/MultiLineString";
@@ -25,7 +25,7 @@ describe('GeometryFactory', () => {
     });
 
     it('create ring', () => {
-        const geom = new Ring(
+        const geom = new LinearRing(
             Utils.randomLineString(5)
         );
 
@@ -34,8 +34,8 @@ describe('GeometryFactory', () => {
 
     it('create polygon', () => {
         const geom = new Polygon(
-            new Ring(Utils.randomLineString(5)),
-            new Ring(Utils.randomLineString(7))
+            new LinearRing(Utils.randomLineString(5)),
+            new LinearRing(Utils.randomLineString(7))
         );
 
         testCreate(geom);
@@ -64,9 +64,9 @@ describe('GeometryFactory', () => {
 
     it('create multi polygon', () => {
         const geom = new MultiPolygon([
-            new Polygon(new Ring(Utils.randomRing(6))),
-            new Polygon(new Ring(Utils.randomRing(5))),
-            new Polygon(new Ring(Utils.randomRing(9)))
+            new Polygon(new LinearRing(Utils.randomRing(6))),
+            new Polygon(new LinearRing(Utils.randomRing(5))),
+            new Polygon(new LinearRing(Utils.randomRing(9)))
         ]);
 
         testCreate(geom);
@@ -74,7 +74,7 @@ describe('GeometryFactory', () => {
 
     it('create geometry collection', () => {
         const geom = new GeometryCollection([
-            new Polygon(new Ring(Utils.randomRing(6))),
+            new Polygon(new LinearRing(Utils.randomRing(6))),
             new Point(34.222, 23.321),
             new LineString(Utils.randomLineString(3))
         ]);

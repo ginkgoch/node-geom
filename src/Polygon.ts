@@ -1,19 +1,19 @@
 import _ from "lodash";
 import * as jsts from 'jsts';
-import Ring from "./Ring";
+import LinearRing from "./LinearRing";
 import Geometry from "./Geometry";
 import ICoordinate from "./base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 
 export default class Polygon extends Geometry {
-    externalRing: Ring;
-    internalRings: Array<Ring>;
+    externalRing: LinearRing;
+    internalRings: Array<LinearRing>;
     
-    constructor(externalRing?: Ring, ...internalRings: Ring[]) {
+    constructor(externalRing?: LinearRing, ...internalRings: LinearRing[]) {
         super();
         
-        this.externalRing = new Ring(externalRing && externalRing.coordinatesFlat());
-        this.internalRings = new Array<Ring>();
+        this.externalRing = new LinearRing(externalRing && externalRing.coordinatesFlat());
+        this.internalRings = new Array<LinearRing>();
         internalRings.forEach(r => this.internalRings.push(r));
     }
     
@@ -38,12 +38,12 @@ export default class Polygon extends Geometry {
 
     static _from(polygon: jsts.geom.Polygon): Polygon {
         const geom = new Polygon(
-            Ring._from(polygon.getExteriorRing())
+            LinearRing._from(polygon.getExteriorRing())
         );
 
         const innerRingCount = polygon.getNumInteriorRing();
         for (let i = 0; i < innerRingCount; i++) {
-            geom.internalRings.push(Ring._from(<jsts.geom.LinearRing>polygon.getInteriorRingN(i)));
+            geom.internalRings.push(LinearRing._from(<jsts.geom.LinearRing>polygon.getInteriorRingN(i)));
         }
 
         return geom;

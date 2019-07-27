@@ -3,13 +3,6 @@ import ICoordinate from "./base/ICoordinate"
 import Envelope from "./Envelope";
 import GeomUtils from "./shared/GeomUtils";
 import * as jsts from 'jsts';
-import Point from "./Point";
-import LineString from "./LineString";
-import Ring from "./Ring";
-import Polygon from "./Polygon";
-import MultiLineString from "./MultiLineString";
-import MultiPoint from "./MultiPoint";
-import GeometryCollection from "./GeometryCollection";
 
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
@@ -58,5 +51,10 @@ export default abstract class Geometry {
         const writer = new jsts.io.WKTWriter();
         const wkt = writer.write(geomTS);
         return wkt;
+    }
+
+    wkb(bigEndian = false): Buffer {
+        const WkbUtils = require("./shared/WkbUtils").default;
+        return WkbUtils.geomToWkb(this, bigEndian);
     }
 }

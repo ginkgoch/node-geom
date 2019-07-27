@@ -1,12 +1,12 @@
 import _ from "lodash";
 import Utils from "./Utils";
-import Ring from "../src/Ring";
+import LinearRing from "../src/LinearRing";
 import Envelope from "../src/Envelope";
 import { GeometryType } from "../src/GeometryType";
 
-describe('Ring', () => {
+describe('LinearRing', () => {
     it('constructor', () => {
-        let ring = new Ring();
+        let ring = new LinearRing();
         expect(ring.type).toBe(GeometryType.Polygon);
         expect(ring.coordinatesFlat().length).toBe(0);
 
@@ -17,7 +17,7 @@ describe('Ring', () => {
             Utils.randomPoint()
         ];
         
-        ring = new Ring([v1, v2, v3, v4, v1]);
+        ring = new LinearRing([v1, v2, v3, v4, v1]);
         expect(ring.coordinatesFlat().length).toBe(5);
     });
 
@@ -31,7 +31,7 @@ describe('Ring', () => {
 
         let r = [v1, v2, v3, v4];
         
-        let ring = new Ring(r);
+        let ring = new LinearRing(r);
         expect(ring.coordinatesFlat().length).toBe(5);
         for (let i = 0; i < r.length; i++) {
             expect(ring.coordinatesFlat()[i]).toEqual(r[i]);
@@ -50,7 +50,7 @@ describe('Ring', () => {
 
         let r = [v1, v2, v3, v4, v1];
         
-        let ring = new Ring(r);
+        let ring = new LinearRing(r);
         expect(ring.coordinatesFlat().length).toBe(5);
         for (let i = 0; i < r.length; i++) {
             expect(ring.coordinatesFlat()[i]).toEqual(r[i]);
@@ -65,10 +65,10 @@ describe('Ring', () => {
             Utils.randomPoint()
         ];
         
-        let ring = new Ring([v1, v2, v3, v4]);
+        let ring = new LinearRing([v1, v2, v3, v4]);
         expect(ring.closed()).toBeTruthy();
 
-        ring = new Ring([v1, v2, v3, v4, v1]);
+        ring = new LinearRing([v1, v2, v3, v4, v1]);
         expect(ring.closed()).toBeTruthy();
 
         ring._coordinates.splice(4, 1);
@@ -77,7 +77,7 @@ describe('Ring', () => {
 
     it('centroid/envelope', () => {
         const r = Utils.randomRing(5);
-        const ring = new Ring(r);
+        const ring = new LinearRing(r);
 
         const env1 = Envelope.from(ring.coordinatesFlat());
         const c1 = env1.centroid();
@@ -87,7 +87,7 @@ describe('Ring', () => {
     });
 
     it('json', () => {
-        let geom = new Ring();
+        let geom = new LinearRing();
         let json = geom.json();
         Utils.validateJsonResult(json, 'Polygon');
     });
@@ -100,7 +100,7 @@ describe('Ring', () => {
             {x: 43.4, y: 78.222}
         ];
         
-        const ring = new Ring([v1, v2, v3, v4]);
+        const ring = new LinearRing([v1, v2, v3, v4]);
         const wkt = ring.wkt();
         expect(wkt).toEqual('LINEARRING(1.2 4.5,2 3.99,22 32.111,43.4 78.222,1.2 4.5)');
     });
