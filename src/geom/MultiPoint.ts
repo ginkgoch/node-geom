@@ -1,3 +1,5 @@
+/// <reference path="../types/Jsts.ts" />
+
 import Point from "./Point";
 import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
