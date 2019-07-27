@@ -11,6 +11,8 @@ import ICoordinate from "../base/ICoordinate"
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
 
+    id: number = 0;
+
     get type(): GeometryType {
         return GeometryType.Unknown;
     }
