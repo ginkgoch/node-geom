@@ -1,5 +1,5 @@
 import GeomUtils from '../../src/shared/GeomUtils'
-import { GeometryType } from '../../src/GeometryType';
+import { GeometryType } from '../../src/geom/GeometryType';
 
 describe('GeomUtils', () => {
     it('geomTypeName', () => {

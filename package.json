@@ -1,8 +1,8 @@
 {
-  "name": "node-ts-template",
-  "version": "0.0.1",
-  "description": "This is a typescript library project template.",
-  "main": "index.js",
+  "name": "ginkgoch-geom",
+  "version": "1.0.0",
+  "description": "This project provides the basic functions for geometries. It allows to convert between `wkt`, `wkb`, `json` and our `well formatted geometry classes` to construct `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon` and `GeometryCollection`. It is also a baseline project for building the entire `Ginkgoch Ecosystem`.",
+  "main": "built/index.js",
   "author": "Ginkgoch",
   "license": "MIT",
   "devDependencies": {
@@ -13,11 +13,13 @@
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "ts-jest": "^24.0.2",
+    "typedoc": "^0.15.0",
     "typescript": "^3.5.3"
   },
   "scripts": {
     "test": "./node_modules/.bin/jest",
-    "build": "./node_modules/.bin/tsc"
+    "build": "rm -rf built && ./node_modules/.bin/tsc",
+    "doc": "./node_modules/.bin/typedoc --out docs ./src"
   },
   "dependencies": {
     "ginkgoch-buffer-io": "^1.1.0",
