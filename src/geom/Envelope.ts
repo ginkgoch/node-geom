@@ -1,6 +1,9 @@
 import IEnvelope from "../base/IEnvelope";
 import ICoordinate from "../base/ICoordinate";
 
+/**
+ * @category geom
+ */
 export default class Envelope implements IEnvelope {
     minx: number;
     miny: number;

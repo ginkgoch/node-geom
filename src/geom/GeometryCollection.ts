@@ -5,6 +5,11 @@ import GeometryFactory from "./GeometryFactory";
 import IGeoJson from "../base/IGeoJson";
 import GeomUtils from "../shared/GeomUtils";
 
+/**
+ * @category geom
+ * @class
+ * @description This class represents the GeometryCollection geometry.
+ */
 export default class GeometryCollection extends GeometryCollectionBase<Geometry> {
     constructor(geometries?: Geometry[]) {
         super(geometries);

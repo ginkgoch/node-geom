@@ -5,6 +5,9 @@ import GeomUtils from "../shared/GeomUtils";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
+/**
+ * @category geom
+ */
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
 
