@@ -6,4 +6,5 @@ This project provides the basic functions for geometries. It allows to convert b
 yarn add ginkgoch-geom
 ```
 
-Then your project template is ready :)
+## Docs
+Visit [https://ginkgoch.github.io/node-geom](https://ginkgoch.github.io/node-geom) for detail.
