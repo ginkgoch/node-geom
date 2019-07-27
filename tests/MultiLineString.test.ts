@@ -1,6 +1,7 @@
 import MultiLineString from "../src/MultiLineString";
 import Utils from "./Utils";
 import LineString from "../src/LineString";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('MultiLineString', () => {
     it('constructor', () => {
@@ -38,10 +39,13 @@ describe('MultiLineString', () => {
     });
 
     it('json', () => {
-        let line = new MultiLineString();
+        let geom = new MultiLineString();
 
-        let json = line.json();
+        let json = geom.json();
         Utils.validateJsonResult(json, 'MultiLineString');
+
+        let geom2 = GeometryFactory.create(json);
+        expect(geom2).toEqual(geom);
     });
 
     it('wkt', () => {

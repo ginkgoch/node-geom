@@ -3,6 +3,7 @@ import ICoordinate from "./base/ICoordinate"
 import Envelope from "./Envelope";
 import GeomUtils from "./shared/GeomUtils";
 import * as jsts from 'jsts';
+import IGeoJson from "./base/IGeoJson";
 
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
@@ -37,7 +38,7 @@ export default abstract class Geometry {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
-    json(): { type: string, coordinates: any } {
+    json(): IGeoJson {
         return {
             type: GeomUtils.geomTypeName(this.type),
             coordinates: this.coordinates()

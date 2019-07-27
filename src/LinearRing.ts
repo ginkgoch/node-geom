@@ -3,6 +3,8 @@ import * as jsts from 'jsts';
 import Geometry from "./Geometry";
 import ICoordinate from "./base/ICoordinate";
 import { GeometryType } from "./GeometryType";
+import Polygon from "./Polygon";
+import IGeoJson from "./base/IGeoJson";
 
 export default class LinearRing extends Geometry {
     _coordinates: ICoordinate[];
@@ -31,6 +33,10 @@ export default class LinearRing extends Geometry {
 
     coordinates(): number[][] {
         return this._coordinates.map(c => [c.x, c.y]);
+    }
+    
+    json(): IGeoJson {
+        return new Polygon(this).json();
     }
 
     closed() {

@@ -38,7 +38,11 @@ export default class Utils {
 
     static validateJsonResult<T extends Geometry>(json: any, expectedTypeName: string) {
         expect(json).toHaveProperty('type');
-        expect(json).toHaveProperty('coordinates');
+        if (expectedTypeName === 'GeometryCollection') {
+            expect(json).toHaveProperty('geometries');
+        } else {
+            expect(json).toHaveProperty('coordinates');
+        }
         expect(json.type).toEqual(expectedTypeName);
     }
 

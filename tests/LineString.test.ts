@@ -52,6 +52,9 @@ describe('LineString', () => {
 
         let json = line.json();
         Utils.validateJsonResult(json, 'LineString');
+
+        let line2 = GeometryFactory.create(json);
+        expect(line2).toEqual(line);
     });
 
     it('wkt', () => {
