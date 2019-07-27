@@ -1,3 +1,4 @@
+/// <reference path="../types/Jsts.ts" />
 import LineString from "./LineString";
 import GeometryCollectionBase from "./GeometryCollectionBase";
 import { GeometryType } from "./GeometryType";
