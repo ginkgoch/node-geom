@@ -1,6 +1,6 @@
 {
   "name": "ginkgoch-geom",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This project provides the basic functions for geometries. It allows to convert between `wkt`, `wkb`, `json` and our `well formatted geometry classes` to construct `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon` and `GeometryCollection`. It is also a baseline project for building the entire `Ginkgoch Ecosystem`.",
   "main": "built/index.js",
   "author": "Ginkgoch",
