@@ -50,9 +50,12 @@ describe('Point', () => {
     });
 
     it('json', () => {
-        let point = new Point();
+        let point = new Point(23.4, 45.6);
         let json = point.json();
         Utils.validateJsonResult(json, 'Point');
+
+        let point2 = GeometryFactory.create(json);
+        expect(point2).toEqual(point);
     });
 
     it('wkt', () => {

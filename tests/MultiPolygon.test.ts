@@ -23,10 +23,13 @@ describe('MultiPolygon', () => {
     });
 
     it('json', () => {
-        let multiPolygon = new MultiPolygon();
+        let geom = new MultiPolygon();
 
-        let json = multiPolygon.json();
+        let json = geom.json();
         Utils.validateJsonResult(json, 'MultiPolygon');
+
+        let geom2 = GeometryFactory.create(json);
+        expect(geom2).toEqual(geom);
     });
 
     it('wkt', () => {

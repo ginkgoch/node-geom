@@ -1,8 +1,9 @@
-import GeometryCollection from "../src/GeometryCollection";
-import { GeometryType } from "../src/GeometryType";
-import Point from "../src/Point";
 import Utils from "./Utils";
+import Point from "../src/Point";
 import LineString from "../src/LineString";
+import { GeometryType } from "../src/GeometryType";
+import GeometryFactory from "../src/GeometryFactory";
+import GeometryCollection from "../src/GeometryCollection";
 
 describe('GeometryCollection', () => {
     it('constructor', () => {
@@ -15,9 +16,18 @@ describe('GeometryCollection', () => {
     });
 
     it('json', () => {
-        let gc = new GeometryCollection();
-        let json = gc.json();
+        let geom = new GeometryCollection([
+            new Point(1, 2),
+            new LineString([
+                { x: 23.4, y: -87 },
+                { x: -23.4, y: 87 }
+            ])
+        ]);
+        let json = geom.json();
         Utils.validateJsonResult(json, 'GeometryCollection');
+
+        let geom2 = GeometryFactory.create(json);
+        expect(geom2).toEqual(geom);
     });
 
     it('wkt', () => {

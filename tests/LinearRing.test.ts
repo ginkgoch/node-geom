@@ -3,6 +3,7 @@ import Utils from "./Utils";
 import LinearRing from "../src/LinearRing";
 import Envelope from "../src/Envelope";
 import { GeometryType } from "../src/GeometryType";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('LinearRing', () => {
     it('constructor', () => {
@@ -87,9 +88,19 @@ describe('LinearRing', () => {
     });
 
     it('json', () => {
-        let geom = new LinearRing();
+        let geom = new LinearRing([
+            {x: 0, y: 0},
+            {x: 100, y: 0},
+            {x: 100, y: 100},
+            {x: 0, y: 100},
+            {x: 0, y: 0}
+        ]);
         let json = geom.json();
         Utils.validateJsonResult(json, 'Polygon');
+
+        let geom2 = GeometryFactory.create(json);
+        let json2 = geom2.json()
+        expect(json).toEqual(json2);
     });
 
     it('wkt', () => {

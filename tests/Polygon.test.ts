@@ -16,6 +16,9 @@ describe('Polygon', () => {
         let geom = new Polygon();
         let json = geom.json();
         Utils.validateJsonResult(json, 'Polygon');
+
+        let geom2 = GeometryFactory.create(json);
+        expect(geom2).toEqual(geom);
     });
 
     it('wkt', () => {

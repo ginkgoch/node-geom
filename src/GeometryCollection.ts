@@ -2,6 +2,8 @@ import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
 import GeometryCollectionBase from "./GeometryCollectionBase";
 import GeometryFactory from "./GeometryFactory";
+import IGeoJson from "./base/IGeoJson";
+import GeomUtils from "./shared/GeomUtils";
 
 export default class GeometryCollection extends GeometryCollectionBase<Geometry> {
     constructor(geometries?: Geometry[]) {
@@ -14,6 +16,13 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
 
     get geometries() {
         return this._geometries;
+    }
+
+    json(): IGeoJson {
+        return {
+            type: GeomUtils.geomTypeName(this.type),
+            geometries: this._geometries.map(g => g.json())
+        }
     }
 
     _ts(): jsts.geom.Geometry {

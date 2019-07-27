@@ -1,6 +1,7 @@
 import Utils from "./Utils";
 import Point from "../src/Point";
 import MultiPoint from "../src/MultiPoint";
+import GeometryFactory from "../src/GeometryFactory";
 
 describe('MultiPoint', () => {
     it('constructor', () => {
@@ -54,9 +55,12 @@ describe('MultiPoint', () => {
     });
 
     it('json', () => {
-        let multiPoints = new MultiPoint();
-        let json = multiPoints.json();
+        let geom = new MultiPoint();
+        let json = geom.json();
         Utils.validateJsonResult(json, 'MultiPoint');
+
+        let geom2 = GeometryFactory.create(json);
+        expect(geom2).toEqual(geom);
     });
 
     it('wkt', () => {
