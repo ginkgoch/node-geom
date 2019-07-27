@@ -1,7 +1,6 @@
 import _ from "lodash";
-import * as jsts from 'jsts';
 import Geometry from "./Geometry";
-import ICoordinate from "./base/ICoordinate";
+import ICoordinate from "../base/ICoordinate";
 
 export default abstract class GeometryCollectionBase<T extends Geometry> extends Geometry {
     _geometries: Array<T>;

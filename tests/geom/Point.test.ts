@@ -1,7 +1,7 @@
-import Point from "../src/Point";
-import Utils from "./Utils";
-import { GeometryType } from "../src/GeometryType";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import Point from "../../src/geom/Point";
+import { GeometryType } from "../../src/geom/GeometryType";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('Point', () => {
     it('constructor', () => {

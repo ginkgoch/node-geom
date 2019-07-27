@@ -1,7 +1,7 @@
-import Utils from "./Utils";
-import Point from "../src/Point";
-import MultiPoint from "../src/MultiPoint";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import Point from "../../src/geom/Point";
+import MultiPoint from "../../src/geom/MultiPoint";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('MultiPoint', () => {
     it('constructor', () => {

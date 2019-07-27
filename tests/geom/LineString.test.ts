@@ -1,7 +1,7 @@
-import Utils from "./Utils";
-import LineString from "../src/LineString";
-import { GeometryType } from "../src/GeometryType";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import LineString from "../../src/geom/LineString";
+import { GeometryType } from "../../src/geom/GeometryType";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('LineString', () => {
     it('constructor', () => {

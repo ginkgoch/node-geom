@@ -1,5 +1,5 @@
-import IEnvelope from "./base/IEnvelope";
-import ICoordinate from "./base/ICoordinate";
+import IEnvelope from "../base/IEnvelope";
+import ICoordinate from "../base/ICoordinate";
 
 export default class Envelope implements IEnvelope {
     minx: number;

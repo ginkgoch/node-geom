@@ -1,7 +1,7 @@
 import Polygon from "./Polygon";
+import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
 import GeometryCollectionBase from "./GeometryCollectionBase";
-import Geometry from "./Geometry";
 
 export default class MultiPolygon extends GeometryCollectionBase<Polygon> {
     constructor(polygon?: Polygon[]) {

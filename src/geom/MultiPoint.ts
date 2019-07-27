@@ -1,7 +1,7 @@
 import Point from "./Point";
-import GeometryCollectionBase from "./GeometryCollectionBase";
-import { GeometryType } from "./GeometryType";
 import Geometry from "./Geometry";
+import { GeometryType } from "./GeometryType";
+import GeometryCollectionBase from "./GeometryCollectionBase";
 
 export default class MultiPoint extends GeometryCollectionBase<Point> {
     constructor(points?: Point[]) {

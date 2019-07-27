@@ -1,9 +1,9 @@
 import _ from "lodash";
-import Utils from "./Utils";
-import LinearRing from "../src/LinearRing";
-import Envelope from "../src/Envelope";
-import { GeometryType } from "../src/GeometryType";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import LinearRing from "../../src/geom/LinearRing";
+import Envelope from "../../src/geom/Envelope";
+import { GeometryType } from "../../src/geom/GeometryType";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('LinearRing', () => {
     it('constructor', () => {

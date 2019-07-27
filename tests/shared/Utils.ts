@@ -1,7 +1,7 @@
 import _ from "lodash";
-import ICoordinate from "../src/base/ICoordinate";
-import Geometry from "../src/Geometry";
-import GeometryFactory from "../src/GeometryFactory";
+import Geometry from "../../src/geom/Geometry";
+import ICoordinate from "../../src/base/ICoordinate";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 export default class Utils {
     static randomPoint() {

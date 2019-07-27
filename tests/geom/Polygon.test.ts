@@ -1,7 +1,7 @@
-import Polygon from "../src/Polygon";
-import Utils from "./Utils";
-import LinearRing from "../src/LinearRing";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import Polygon from "../../src/geom/Polygon";
+import LinearRing from "../../src/geom/LinearRing";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('Polygon', () => {
     it('constructor', () => {

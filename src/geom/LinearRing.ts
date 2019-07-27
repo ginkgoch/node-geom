@@ -1,10 +1,10 @@
 import _ from "lodash";
 import * as jsts from 'jsts';
 import Geometry from "./Geometry";
-import ICoordinate from "./base/ICoordinate";
+import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 import Polygon from "./Polygon";
-import IGeoJson from "./base/IGeoJson";
+import IGeoJson from "../base/IGeoJson";
 
 export default class LinearRing extends Geometry {
     _coordinates: ICoordinate[];

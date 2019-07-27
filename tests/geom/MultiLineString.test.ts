@@ -1,7 +1,7 @@
-import MultiLineString from "../src/MultiLineString";
-import Utils from "./Utils";
-import LineString from "../src/LineString";
-import GeometryFactory from "../src/GeometryFactory";
+import Utils from "../shared/Utils";
+import LineString from "../../src/geom/LineString";
+import MultiLineString from "../../src/geom/MultiLineString";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('MultiLineString', () => {
     it('constructor', () => {

@@ -5,8 +5,8 @@ import Polygon from "./Polygon";
 import Geometry from "./Geometry";
 import MultiPoint from "./MultiPoint";
 import LineString from "./LineString";
-import IGeoJson from './base/IGeoJson';
-import WkbUtils from './shared/WkbUtils';
+import IGeoJson from '../base/IGeoJson';
+import WkbUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
 

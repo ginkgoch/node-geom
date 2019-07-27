@@ -1,8 +1,8 @@
-import LinearRing from "../src/LinearRing";
-import Utils from "./Utils";
-import Polygon from "../src/Polygon";
-import MultiPolygon from "../src/MultiPolygon";
-import GeometryFactory from "../src/GeometryFactory";
+import LinearRing from "../../src/geom/LinearRing";
+import Utils from "../shared/Utils";
+import Polygon from "../../src/geom/Polygon";
+import MultiPolygon from "../../src/geom/MultiPolygon";
+import GeometryFactory from "../../src/geom/GeometryFactory";
 
 describe('MultiPolygon', () => {
     it('constructor', () => {

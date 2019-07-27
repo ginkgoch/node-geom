@@ -1,9 +1,9 @@
-import Utils from "./Utils";
-import Point from "../src/Point";
-import LineString from "../src/LineString";
-import { GeometryType } from "../src/GeometryType";
-import GeometryFactory from "../src/GeometryFactory";
-import GeometryCollection from "../src/GeometryCollection";
+import Utils from "../shared/Utils";
+import Point from "../../src/geom/Point";
+import LineString from "../../src/geom/LineString";
+import { GeometryType } from "../../src/geom/GeometryType";
+import GeometryFactory from "../../src/geom/GeometryFactory";
+import GeometryCollection from "../../src/geom/GeometryCollection";
 
 describe('GeometryCollection', () => {
     it('constructor', () => {

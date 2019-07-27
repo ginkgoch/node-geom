@@ -1,7 +1,7 @@
 import _ from "lodash";
 import * as jsts from 'jsts';
 import Geometry from "./Geometry";
-import ICoordinate from "./base/ICoordinate";
+import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 
 export default class LineString extends Geometry {

@@ -1,14 +1,14 @@
-import Point from "../src/Point";
-import GeometryFactory from "../src/GeometryFactory";
-import LineString from "../src/LineString";
-import Utils from "./Utils";
-import Geometry from "../src/Geometry";
-import LinearRing from "../src/LinearRing";
-import Polygon from "../src/Polygon";
-import MultiPoint from "../src/MultiPoint";
-import MultiLineString from "../src/MultiLineString";
-import MultiPolygon from "../src/MultiPolygon";
-import GeometryCollection from "../src/GeometryCollection";
+import Utils from "../shared/Utils";
+import Point from "../../src/geom/Point";
+import Polygon from "../../src/geom/Polygon";
+import Geometry from "../../src/geom/Geometry";
+import LineString from "../../src/geom/LineString";
+import LinearRing from "../../src/geom/LinearRing";
+import MultiPoint from "../../src/geom/MultiPoint";
+import MultiPolygon from "../../src/geom/MultiPolygon";
+import MultiLineString from "../../src/geom/MultiLineString";
+import GeometryFactory from "../../src/geom/GeometryFactory";
+import GeometryCollection from "../../src/geom/GeometryCollection";
 
 describe('GeometryFactory', () => {
     it('create point', () => {

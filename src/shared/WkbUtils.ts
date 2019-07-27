@@ -1,18 +1,19 @@
 import _ from "lodash";
 import assert from "assert";
 import { BufferWriter, BufferReader } from "ginkgoch-buffer-io";
-import LinearRing from "../LinearRing";
-import Point from "../Point";
-import Polygon from "../Polygon";
-import Geometry from "../Geometry";
+
+import Point from "../geom/Point";
 import Constants from "./Constants";
-import LineString from "../LineString";
-import MultiPoint from "../MultiPoint";
-import MultiPolygon from "../MultiPolygon";
+import Polygon from "../geom/Polygon";
+import Geometry from "../geom/Geometry";
+import LineString from "../geom/LineString";
+import LinearRing from "../geom/LinearRing";
+import MultiPoint from "../geom/MultiPoint";
+import MultiPolygon from "../geom/MultiPolygon";
 import ICoordinate from "../base/ICoordinate";
-import { GeometryType } from "../GeometryType";
-import MultiLineString from "../MultiLineString";
-import GeometryCollection from "../GeometryCollection";
+import { GeometryType } from "../geom/GeometryType";
+import MultiLineString from "../geom/MultiLineString";
+import GeometryCollection from "../geom/GeometryCollection";
 
 export default class WkbUtils {
     static wkbToGeom(buff: Buffer): Geometry {

@@ -1,4 +1,4 @@
-import { GeometryType } from "../GeometryType";
+import { GeometryType } from "../geom/GeometryType";
 
 export default class GeomUtils {
     static geomTypeName(geomType: GeometryType): string {
@@ -11,13 +11,4 @@ export default class GeomUtils {
 
         return "Unknown";
     }
-
-    // static toTSGeom(geom: Geometry): jsts.geom.Geometry {
-    //     const geomWkt = geom.wkt();
-    //     return new jsts.io.WKTReader().read(geomWkt)
-    // }
-
-    // static fromTSGeom(geom: jsts.geom.Geometry): Geometry {
-
-    // }
 }

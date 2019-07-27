@@ -1,5 +1,5 @@
-import Envelope from "../src/Envelope";
-import IEnvelope from "../src/base/IEnvelope";
+import Envelope from "../../src/geom/Envelope";
+import IEnvelope from "../../src/base/IEnvelope";
 
 describe('envelope helper test', () => {
     test('disjoined test', () => {

@@ -2,10 +2,7 @@ import _ from "lodash";
 import * as jsts from 'jsts';
 import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
-import ICoordinate from "./base/ICoordinate";
-import { BufferWriter, BufferReader } from "ginkgoch-buffer-io";
-import Constants from "./shared/Constants";
-import WkbUtils from "./shared/WkbUtils";
+import ICoordinate from "../base/ICoordinate";
 
 export default class Point extends Geometry {
     x: number = NaN
