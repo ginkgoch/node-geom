@@ -1,3 +1,4 @@
+import _ from "lodash";
 import IEnvelope from "../base/IEnvelope";
 import ICoordinate from "../base/ICoordinate";
 
@@ -21,11 +22,29 @@ export default class Envelope implements IEnvelope {
         return { x: (this.minx + this.maxx) * .5, y: (this.miny + this.maxy) * .5 };
     }
 
-    static from(coordinates: ICoordinate[]) {
+    static from(coordinates: any): Envelope
+    static from(coordinates: ICoordinate[]): Envelope
+    static from(param: ICoordinate[] | any): Envelope {
+        const flatten = _.flattenDeep(param);
+        if (flatten.length === 0) {
+            throw new Error('Invalid coordinates. Must be an array of ICoordinates or numbers.');
+        }
+
+        let coordinates: ICoordinate[];
+        if (typeof _.first(flatten) === 'number') {
+            const flattenNumbers = flatten as number[];
+            coordinates = new Array<ICoordinate>();
+            for (let i = 0; i < flattenNumbers.length; i += 2) {
+                coordinates.push({ x: flattenNumbers[i], y: flattenNumbers[i + 1] });
+            }
+        } else {
+            coordinates = param as Array<ICoordinate>;
+        }
+
         let [minx, miny, maxx, maxy] = [
-            Number.POSITIVE_INFINITY, 
-            Number.POSITIVE_INFINITY, 
-            Number.NEGATIVE_INFINITY, 
+            Number.POSITIVE_INFINITY,
+            Number.POSITIVE_INFINITY,
+            Number.NEGATIVE_INFINITY,
             Number.NEGATIVE_INFINITY];
 
         for (let c of coordinates) {
@@ -46,14 +65,14 @@ export default class Envelope implements IEnvelope {
         return { minx, miny, maxx, maxy };
     }
 
-    static disjoined(envelope1: IEnvelope|undefined, envelope2: IEnvelope|undefined): boolean {
+    static disjoined(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
         if (envelope1 === undefined || envelope2 === undefined) return false;
 
         return envelope1.maxx < envelope2.minx || envelope1.minx > envelope2.maxx
             || envelope1.miny > envelope2.maxy || envelope1.maxy < envelope2.miny;
     }
 
-    static equals(envelope1: IEnvelope|undefined, envelope2: IEnvelope|undefined, tolerance: number = 0) {
+    static equals(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined, tolerance: number = 0) {
         if (envelope1 === undefined && envelope2 === undefined) {
             return true;
         }
