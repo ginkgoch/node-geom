@@ -7,10 +7,23 @@ export default class Feature implements IFeature {
     geometry: Geometry;
     properties: Map<string, any>;
 
-    constructor(geom: Geometry) {
-        this.id = 0;
+    /**
+     * Construct a feature instance.
+     * @param {Geometry} geom The geometry in the feature. It is required.
+     * @param {Map<string, any>} properties The properties of this feature. Default is empty map.
+     * @param id The id of this feature. Default is 0.
+     */
+    constructor(geom: Geometry, properties?: Map<string, any>, id?: number) {
         this.geometry = geom;
+        if (id !== undefined) {
+            this.id = id;
+        }
         this.properties = new Map<string, any>();
+        if (properties !== undefined) {
+            properties.forEach((v, k, m) => {
+                this.properties.set(k, v);
+            })
+        }
     }
 
     get type(): string {
