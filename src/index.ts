@@ -11,7 +11,9 @@ import MultiPoint from "./geom/MultiPoint";
 import MultiPolygon from "./geom/MultiPolygon";
 import Point from "./geom/Point";
 import Polygon from "./geom/Polygon";
+import Feature from "./geom/Feature";
 
+import IFeature from "./base/IFeature";
 import ICoordinate from "./base/ICoordinate";
 import IEnvelope from "./base/IEnvelope";
 import IGeoJson from "./base/IGeoJson";
@@ -30,7 +32,9 @@ export {
     MultiPolygon,
     Point,
     Polygon,
+    Feature,
     ICoordinate,
     IEnvelope,
-    IGeoJson
+    IGeoJson,
+    IFeature
 }
