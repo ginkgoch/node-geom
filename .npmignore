@@ -4,3 +4,4 @@
 /tsconfig.json
 /jest.config.js
 /docs
+/webpack.config

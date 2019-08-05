@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IFeature | ginkgoch-geom</title>
+	<title>BufferCaps | ginkgoch-geom</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,85 +56,71 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ifeature.html">IFeature</a>
+					<a href="buffercaps.html">BufferCaps</a>
 				</li>
 			</ul>
-			<h1>Interface IFeature</h1>
+			<h1>Enumeration BufferCaps</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">IFeature</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/feature.html" class="tsd-signature-type">Feature</a></li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeature.html#geometry" class="tsd-kind-icon">geometry</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeature.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeature.html#properties" class="tsd-kind-icon">properties</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ifeature.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="buffercaps.html#default" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="buffercaps.html#flat" class="tsd-kind-icon">flat</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="buffercaps.html#round" class="tsd-kind-icon">round</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="buffercaps.html#square" class="tsd-kind-icon">square</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="geometry" class="tsd-anchor"></a>
-					<h3>geometry</h3>
-					<div class="tsd-signature tsd-kind-icon">geometry<span class="tsd-signature-symbol">:</span> <a href="../classes/geometry.html" class="tsd-signature-type">Geometry</a></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="default" class="tsd-anchor"></a>
+					<h3>default</h3>
+					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/base/IFeature.ts#L5">base/IFeature.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/BufferCaps.ts#L2">spatials/BufferCaps.ts:2</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="flat" class="tsd-anchor"></a>
+					<h3>flat</h3>
+					<div class="tsd-signature tsd-kind-icon">flat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/base/IFeature.ts#L4">base/IFeature.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/BufferCaps.ts#L4">spatials/BufferCaps.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="properties" class="tsd-anchor"></a>
-					<h3>properties</h3>
-					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="round" class="tsd-anchor"></a>
+					<h3>round</h3>
+					<div class="tsd-signature tsd-kind-icon">round<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/base/IFeature.ts#L6">base/IFeature.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/BufferCaps.ts#L3">spatials/BufferCaps.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="square" class="tsd-anchor"></a>
+					<h3>square</h3>
+					<div class="tsd-signature tsd-kind-icon">square<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;3</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/base/IFeature.ts#L7">base/IFeature.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/BufferCaps.ts#L5">spatials/BufferCaps.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -150,11 +136,29 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/buffercaps.html" class="tsd-kind-icon">Buffer<wbr>Caps</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
+						<a href="buffercaps.html" class="tsd-kind-icon">Buffer<wbr>Caps</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="buffercaps.html#default" class="tsd-kind-icon">default</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="buffercaps.html#flat" class="tsd-kind-icon">flat</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="buffercaps.html#round" class="tsd-kind-icon">round</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="buffercaps.html#square" class="tsd-kind-icon">square</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/geometrytype.html" class="tsd-kind-icon">Geometry<wbr>Type</a>
+						<a href="geometrytype.html" class="tsd-kind-icon">Geometry<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/constants.html" class="tsd-kind-icon">Constants</a>
@@ -211,34 +215,16 @@
 						<a href="../classes/wkbutils.html" class="tsd-kind-icon">Wkb<wbr>Utils</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="icoordinate.html" class="tsd-kind-icon">ICoordinate</a>
+						<a href="../interfaces/icoordinate.html" class="tsd-kind-icon">ICoordinate</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="ienvelope.html" class="tsd-kind-icon">IEnvelope</a>
+						<a href="../interfaces/ienvelope.html" class="tsd-kind-icon">IEnvelope</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="ifeature.html" class="tsd-kind-icon">IFeature</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeature.html#geometry" class="tsd-kind-icon">geometry</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeature.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeature.html#properties" class="tsd-kind-icon">properties</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ifeature.html#type" class="tsd-kind-icon">type</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="igeojson.html" class="tsd-kind-icon">IGeo<wbr>Json</a>
+						<a href="../interfaces/ifeature.html" class="tsd-kind-icon">IFeature</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/igeojson.html" class="tsd-kind-icon">IGeo<wbr>Json</a>
 					</li>
 				</ul>
 			</nav>
