@@ -42,4 +42,19 @@ describe('envelope helper test', () => {
         result = Envelope.equals(env1, env2, 0.001);
         expect(result).toBeTruthy();
     });
+
+    it('contains', () => {
+        let envelope1 = { minx: -180, miny: -90, maxx: 180, maxy: 90 };
+        let envelope2 = { minx: -90, miny: -40, maxx: 90, maxy: 40 };
+        let rel = Envelope.contains(envelope1, envelope2);
+        expect(rel).toBeTruthy();
+
+        envelope2 = { minx: -190, miny: -40, maxx: -181, maxy: 40 };
+        rel = Envelope.contains(envelope1, envelope2);
+        expect(rel).toBeFalsy();
+
+        envelope2 = { minx: -190, miny: -40, maxx: -9, maxy: 40 };
+        rel = Envelope.contains(envelope1, envelope2);
+        expect(rel).toBeFalsy();
+    });
 });
