@@ -43,6 +43,16 @@ export default abstract class Geometry {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
+    area() {
+        const tsGeom1 = this._ts();
+        return tsGeom1.getArea();
+    }
+
+    perimeter() {
+        const tsGeom1 = this._ts();
+        return tsGeom1.getLength();
+    }
+
     json(): IGeoJson {
         return {
             type: GeomUtils.geomTypeName(this.type),
@@ -63,4 +73,60 @@ export default abstract class Geometry {
         const WkbUtils = require("../shared/WkbUtils").default;
         return WkbUtils.geomToWkb(this, bigEndian);
     }
+
+    //#region 
+    contains(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.contains(tsGeom2);
+    }
+
+    covers(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.covers(tsGeom2);
+    }
+
+    crosses(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.crosses(tsGeom2);
+    }
+
+    disjoint(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.disjoint(tsGeom2);
+    }
+
+    distance(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.distance(tsGeom2);
+    }
+
+    intersects(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.intersects(tsGeom2);
+    }
+
+    overlaps(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.overlaps(tsGeom2);
+    }
+
+    within(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.within(tsGeom2);
+    }
+
+    touches(geom: Geometry) {
+        const tsGeom1 = this._ts();
+        const tsGeom2 = geom._ts();
+        return tsGeom1.touches(tsGeom2);
+    }
+    //#endregion
 }

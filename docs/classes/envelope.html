@@ -106,10 +106,15 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="envelope.html#area" class="tsd-kind-icon">area</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="envelope.html#centroid" class="tsd-kind-icon">centroid</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="envelope.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="envelope.html#perimeter" class="tsd-kind-icon">perimeter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#contains" class="tsd-kind-icon">contains</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#disjoined" class="tsd-kind-icon">disjoined</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#equals" class="tsd-kind-icon">equals</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#from" class="tsd-kind-icon">from</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#intersects" class="tsd-kind-icon">intersects</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="envelope.html#union" class="tsd-kind-icon">union</a></li>
 							</ul>
 						</section>
@@ -128,7 +133,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L12">geom/Envelope.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L12">geom/Envelope.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -160,7 +165,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/ienvelope.html">IEnvelope</a>.<a href="../interfaces/ienvelope.html#maxx">maxx</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L11">geom/Envelope.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L11">geom/Envelope.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/ienvelope.html">IEnvelope</a>.<a href="../interfaces/ienvelope.html#maxy">maxy</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L12">geom/Envelope.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L12">geom/Envelope.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +187,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/ienvelope.html">IEnvelope</a>.<a href="../interfaces/ienvelope.html#minx">minx</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L9">geom/Envelope.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L9">geom/Envelope.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,13 +198,30 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/ienvelope.html">IEnvelope</a>.<a href="../interfaces/ienvelope.html#miny">miny</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L10">geom/Envelope.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L10">geom/Envelope.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="area" class="tsd-anchor"></a>
+					<h3>area</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">area<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L32">geom/Envelope.ts:32</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="centroid" class="tsd-anchor"></a>
 					<h3>centroid</h3>
@@ -210,10 +232,76 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L21">geom/Envelope.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L21">geom/Envelope.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/icoordinate.html" class="tsd-signature-type">ICoordinate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="expand" class="tsd-anchor"></a>
+					<h3>expand</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">(</span>envelope<span class="tsd-signature-symbol">: </span><a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L25">geom/Envelope.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>envelope: <a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="perimeter" class="tsd-anchor"></a>
+					<h3>perimeter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">perimeter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L38">geom/Envelope.ts:38</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="contains" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> contains</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">contains<span class="tsd-signature-symbol">(</span>envelope1<span class="tsd-signature-symbol">: </span><a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, envelope2<span class="tsd-signature-symbol">: </span><a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L94">geom/Envelope.ts:94</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>envelope1: <a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5>envelope2: <a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -227,7 +315,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L68">geom/Envelope.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L87">geom/Envelope.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -253,7 +341,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L75">geom/Envelope.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L136">geom/Envelope.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -283,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L25">geom/Envelope.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L44">geom/Envelope.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -297,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L26">geom/Envelope.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L45">geom/Envelope.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -311,6 +399,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="intersects" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> intersects</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">intersects<span class="tsd-signature-symbol">(</span>envelope1<span class="tsd-signature-symbol">: </span><a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, envelope2<span class="tsd-signature-symbol">: </span><a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L103">geom/Envelope.ts:103</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>envelope1: <a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+								<li>
+									<h5>envelope2: <a href="../interfaces/ienvelope.html" class="tsd-signature-type">IEnvelope</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="union" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> union</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -320,7 +434,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/6d03171/src/geom/Envelope.ts#L60">geom/Envelope.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/geom/Envelope.ts#L79">geom/Envelope.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,6 +463,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
+						<a href="../enums/buffercaps.html" class="tsd-kind-icon">Buffer<wbr>Caps</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="../enums/geometrytype.html" class="tsd-kind-icon">Geometry<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -375,7 +492,19 @@
 								<a href="envelope.html#miny" class="tsd-kind-icon">miny</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="envelope.html#area" class="tsd-kind-icon">area</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="envelope.html#centroid" class="tsd-kind-icon">centroid</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="envelope.html#expand" class="tsd-kind-icon">expand</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="envelope.html#perimeter" class="tsd-kind-icon">perimeter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="envelope.html#contains" class="tsd-kind-icon">contains</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="envelope.html#disjoined" class="tsd-kind-icon">disjoined</a>
@@ -385,6 +514,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="envelope.html#from" class="tsd-kind-icon">from</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="envelope.html#intersects" class="tsd-kind-icon">intersects</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="envelope.html#union" class="tsd-kind-icon">union</a>
@@ -431,6 +563,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="polygon.html" class="tsd-kind-icon">Polygon</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="spatialops.html" class="tsd-kind-icon">Spatial<wbr>Ops</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="validators.html" class="tsd-kind-icon">Validators</a>

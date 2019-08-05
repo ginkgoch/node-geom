@@ -22,6 +22,25 @@ export default class Envelope implements IEnvelope {
         return { x: (this.minx + this.maxx) * .5, y: (this.miny + this.maxy) * .5 };
     }
 
+    expand(envelope: IEnvelope) {
+        this.minx = Math.min(this.minx, envelope.minx);
+        this.miny = Math.min(this.miny, envelope.miny);
+        this.maxx = Math.max(this.maxx, envelope.maxx);
+        this.maxy = Math.max(this.maxy, envelope.maxy);
+    }
+
+    area() {
+        const width = Math.abs(this.maxx - this.minx);
+        const height = Math.abs(this.maxy - this.miny);
+        return width * height;
+    }
+
+    perimeter() {
+        const width = Math.abs(this.maxx - this.minx);
+        const height = Math.abs(this.maxy - this.miny);
+        return width * 2 + height * 2;
+    }
+
     static from(coordinates: any): Envelope
     static from(coordinates: ICoordinate[]): Envelope
     static from(param: ICoordinate[] | any): Envelope {
@@ -70,6 +89,48 @@ export default class Envelope implements IEnvelope {
 
         return envelope1.maxx < envelope2.minx || envelope1.minx > envelope2.maxx
             || envelope1.miny > envelope2.maxy || envelope1.maxy < envelope2.miny;
+    }
+
+    static contains(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
+        if (envelope1 === undefined || envelope2 === undefined) {
+            return false;
+        }
+
+        return envelope1.minx <= envelope2.minx && envelope1.maxx >= envelope2.maxx &&
+            envelope1.miny <= envelope2.miny && envelope1.maxy >= envelope2.maxy;
+    }
+
+    static intersects(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
+        if (envelope1 === undefined || envelope2 === undefined) {
+            return false;
+        }
+
+        let p1 = { x: envelope1.minx, y: envelope1.miny };
+        let p2 = { x: envelope1.maxx, y: envelope1.maxy };
+        let q1 = { x: envelope2.minx, y: envelope2.miny };
+        let q2 = { x: envelope2.maxx, y: envelope2.maxy };
+
+        let min1 = Math.min(q1.x, q2.x);
+        let max1 = Math.max(q1.x, q2.x);
+        let min2 = Math.min(p1.x, p2.x);
+        let max2 = Math.max(p1.x, p2.x);
+        if (min2 > max1) {
+            return false;
+        }
+        if (max2 < min1) {
+            return false;
+        }
+        min1 = Math.min(q1.y, q2.y);
+        max1 = Math.max(q1.y, q2.y);
+        min2 = Math.min(p1.y, p2.y);
+        max2 = Math.max(p1.y, p2.y);
+        if (min2 > max1) {
+            return false;
+        }
+        if (max2 < min1) {
+            return false;
+        }
+        return true;
     }
 
     static equals(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined, tolerance: number = 0) {
