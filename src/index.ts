@@ -38,3 +38,5 @@ export {
     IGeoJson,
     IFeature
 }
+
+export * from './spatials';
