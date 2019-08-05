@@ -38,6 +38,12 @@ module.exports = {
       amd: "jsts",
       root: "jsts"
     },
+    "ginkgoch-buffer-io": {
+      commonjs: "ginkgoch-buffer-io",
+      commonjs2: "ginkgoch-buffer-io",
+      amd: "ginkgoch-buffer-io",
+      root: "ginkgoch-buffer-io"
+    }
   },
   devtool: 'source-map'
 };

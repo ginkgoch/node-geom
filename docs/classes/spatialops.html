@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GeomUtils | ginkgoch-geom</title>
+	<title>SpatialOps | ginkgoch-geom</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="geomutils.html">GeomUtils</a>
+					<a href="spatialops.html">SpatialOps</a>
 				</li>
 			</ul>
-			<h1>Class GeomUtils</h1>
+			<h1>Class SpatialOps</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GeomUtils</span>
+						<span class="target">SpatialOps</span>
 					</li>
 				</ul>
 			</section>
@@ -81,7 +81,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="geomutils.html#geomtypename" class="tsd-kind-icon">geom<wbr>Type<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#buffer" class="tsd-kind-icon">buffer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#convexhull" class="tsd-kind-icon">convex<wbr>Hull</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#diff" class="tsd-kind-icon">diff</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#intersection" class="tsd-kind-icon">intersection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#normalize" class="tsd-kind-icon">normalize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="spatialops.html#union" class="tsd-kind-icon">union</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,25 +95,158 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="geomtypename" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> geom<wbr>Type<wbr>Name</h3>
+					<a name="buffer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> buffer</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">geom<wbr>Type<wbr>Name<span class="tsd-signature-symbol">(</span>geomType<span class="tsd-signature-symbol">: </span><a href="../enums/geometrytype.html" class="tsd-signature-type">GeometryType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">buffer<span class="tsd-signature-symbol">(</span>geom<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a>, distance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, quadrantSegments<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, endCapStyle<span class="tsd-signature-symbol">: </span><a href="../enums/buffercaps.html" class="tsd-signature-type">BufferCaps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/shared/GeomUtils.ts#L4">shared/GeomUtils.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L5">spatials/SpatialOps.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>geomType: <a href="../enums/geometrytype.html" class="tsd-signature-type">GeometryType</a></h5>
+									<h5>geom: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+								<li>
+									<h5>distance: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> quadrantSegments: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;8</span></h5>
+								</li>
+								<li>
+									<h5>endCapStyle: <a href="../enums/buffercaps.html" class="tsd-signature-type">BufferCaps</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="convexhull" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> convex<wbr>Hull</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">convex<wbr>Hull<span class="tsd-signature-symbol">(</span>geom<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L11">spatials/SpatialOps.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>geom: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="diff" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> diff</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">diff<span class="tsd-signature-symbol">(</span>geom1<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a>, geom2<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L17">spatials/SpatialOps.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>geom1: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+								<li>
+									<h5>geom2: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="intersection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> intersection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">intersection<span class="tsd-signature-symbol">(</span>geom1<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a>, geom2<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L24">spatials/SpatialOps.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>geom1: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+								<li>
+									<h5>geom2: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="normalize" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> normalize</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">normalize<span class="tsd-signature-symbol">(</span>geom<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L38">spatials/SpatialOps.ts:38</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>geom: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="union" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> union</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">union<span class="tsd-signature-symbol">(</span>geom1<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a>, geom2<span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="geometry.html" class="tsd-signature-type">Geometry</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ginkgoch/node-geom/blob/52b2887/src/spatials/SpatialOps.ts#L31">spatials/SpatialOps.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>geom1: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+								<li>
+									<h5>geom2: <a href="geometry.html" class="tsd-signature-type">Geometry</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="geometry.html" class="tsd-signature-type">Geometry</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -139,18 +277,9 @@
 					<li class=" tsd-kind-class">
 						<a href="feature.html" class="tsd-kind-icon">Feature</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="geomutils.html" class="tsd-kind-icon">Geom<wbr>Utils</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="geomutils.html#geomtypename" class="tsd-kind-icon">geom<wbr>Type<wbr>Name</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="geometry.html" class="tsd-kind-icon">Geometry</a>
 					</li>
@@ -184,9 +313,33 @@
 					<li class=" tsd-kind-class">
 						<a href="polygon.html" class="tsd-kind-icon">Polygon</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="spatialops.html" class="tsd-kind-icon">Spatial<wbr>Ops</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#buffer" class="tsd-kind-icon">buffer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#convexhull" class="tsd-kind-icon">convex<wbr>Hull</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#diff" class="tsd-kind-icon">diff</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#intersection" class="tsd-kind-icon">intersection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#normalize" class="tsd-kind-icon">normalize</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="spatialops.html#union" class="tsd-kind-icon">union</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="validators.html" class="tsd-kind-icon">Validators</a>
 					</li>
