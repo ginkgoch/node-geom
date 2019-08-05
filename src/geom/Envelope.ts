@@ -84,8 +84,8 @@ export default class Envelope implements IEnvelope {
             return false;
         }
 
-        return envelope1.minx < envelope2.minx && envelope1.maxx > envelope2.maxx && 
-            envelope1.miny < envelope2.miny && envelope1.maxy > envelope2.maxy;
+        return envelope1.minx <= envelope2.minx && envelope1.maxx >= envelope2.maxx && 
+            envelope1.miny <= envelope2.miny && envelope1.maxy >= envelope2.maxy;
     }
 
     static equals(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined, tolerance: number = 0) {
