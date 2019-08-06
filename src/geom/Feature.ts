@@ -61,4 +61,17 @@ export default class Feature implements IFeature {
     envelope() {
         return this.geometry.envelope();
     }
+
+    clone(fields?: 'none' | 'all' | string[]) {
+        const geomClone = this.geometry.clone();
+        if (fields === undefined || fields === 'all') {
+            return new Feature(geomClone, this.properties, this.id);
+        } else if (fields === 'none') {
+            return new Feature(geomClone, {}, this.id);
+        } else {
+            const props = new Map<string, any>();
+            fields.filter(f => this.properties.has(f)).forEach(f => props.set(f, this.properties.get(f)));
+            return new Feature(geomClone, props, this.id);
+        }
+    }
 }

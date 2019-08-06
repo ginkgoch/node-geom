@@ -57,4 +57,40 @@ describe('Feature', () => {
         const envelope2 = geom.envelope();
         expect(envelope1).toEqual(envelope2);
     });
+
+    it('clone', () => {
+        const feature = new Feature(new Point(23, 45), { 'name': 'Samuel', 'age': 57, 'gender': 'male' }, 20);
+
+        let f = feature.clone();
+        expect(f.id).toBe(20);
+        expect(f.geometry).toEqual(new Point(23, 45));
+        expect(f.properties.get('name')).toEqual('Samuel');
+        expect(f.properties.get('age')).toEqual(57);
+        expect(f.properties.get('gender')).toEqual('male');
+
+        f = feature.clone('all');
+        expect(f.id).toBe(20);
+        expect(f.geometry).toEqual(new Point(23, 45));
+        expect(f.properties.get('name')).toEqual('Samuel');
+        expect(f.properties.get('age')).toEqual(57);
+        expect(f.properties.get('gender')).toEqual('male');
+
+        f = feature.clone(undefined);
+        expect(f.id).toBe(20);
+        expect(f.geometry).toEqual(new Point(23, 45));
+        expect(f.properties.get('name')).toEqual('Samuel');
+        expect(f.properties.get('age')).toEqual(57);
+        expect(f.properties.get('gender')).toEqual('male');
+
+        f = feature.clone('none');
+        expect(f.id).toBe(20);
+        expect(f.geometry).toEqual(new Point(23, 45));
+        expect(f.properties.size).toBe(0);
+
+        f = feature.clone(['name', 'noColumn']);
+        expect(f.id).toBe(20);
+        expect(f.geometry).toEqual(new Point(23, 45));
+        expect(f.properties.size).toEqual(1);
+        expect(f.properties.get('name')).toEqual('Samuel');
+    });
 });
