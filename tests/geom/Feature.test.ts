@@ -1,4 +1,5 @@
 import { Feature, Point } from "../../src/index";
+import Utils from '../shared/Utils';
 
 describe('Feature', () => {
     it('Feature - constructor 1', () => {
@@ -47,5 +48,13 @@ describe('Feature', () => {
 
         feature = new Feature({ type: 'Point', coordinates: [34.5, 89.4] }, { RECID: 1, NAME: 'Nelson' });
         expect(feature.id).toBe(0);
+    });
+
+    it('envelope', () => {
+        const geom = Utils.randomLineStringGeometry(20);
+        const feature = new Feature(geom);
+        const envelope1 = feature.envelope();
+        const envelope2 = geom.envelope();
+        expect(envelope1).toEqual(envelope2);
     });
 });

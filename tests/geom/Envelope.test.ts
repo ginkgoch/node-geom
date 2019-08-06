@@ -57,4 +57,14 @@ describe('envelope helper test', () => {
         rel = Envelope.contains(envelope1, envelope2);
         expect(rel).toBeFalsy();
     });
+
+    it('unionAll', () => {
+        const envelope1 = { minx: -20, miny: 0, maxx: 0, maxy: 20 };
+        const envelope2 = { minx: 0, miny: 0, maxx: 20, maxy: 20 };
+        const envelope3 = { minx: -20, miny: -20, maxx: 0, maxy: 0 };
+        const envelope4 = { minx: 0, miny: -20, maxx: 20, maxy: 0 };
+
+        const result = Envelope.unionAll([ envelope1, envelope2, envelope3, envelope4 ]);
+        expect(result).toEqual({ minx: -20, miny: -20, maxx: 20, maxy: 20 });
+    });
 });

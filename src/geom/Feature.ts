@@ -57,4 +57,8 @@ export default class Feature implements IFeature {
             properties
         };
     }
+
+    envelope() {
+        return this.geometry.envelope();
+    }
 }

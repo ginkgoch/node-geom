@@ -84,6 +84,13 @@ export default class Envelope implements IEnvelope {
         return { minx, miny, maxx, maxy };
     }
 
+    static unionAll(envelopes: IEnvelope[]): IEnvelope {
+        let envelope = Envelope.init();
+        envelopes.forEach(e => envelope.expand(e));
+
+        return envelope;
+    }
+
     static disjoined(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
         if (envelope1 === undefined || envelope2 === undefined) return false;
 
@@ -146,5 +153,9 @@ export default class Envelope implements IEnvelope {
             Math.abs(envelope1.miny - envelope2.miny) <= tolerance &&
             Math.abs(envelope1.maxx - envelope2.maxx) <= tolerance &&
             Math.abs(envelope1.maxy - envelope2.maxy) <= tolerance;
+    }
+
+    static init(): Envelope {
+        return new Envelope(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);
     }
 }
