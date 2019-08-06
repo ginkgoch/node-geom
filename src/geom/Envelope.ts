@@ -76,15 +76,15 @@ export default class Envelope implements IEnvelope {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
-    static union(env1: IEnvelope, env2: IEnvelope): IEnvelope {
+    static union(env1: IEnvelope, env2: IEnvelope): Envelope {
         let minx = Math.min(env1.minx, env2.minx);
         let miny = Math.min(env1.miny, env2.miny);
         let maxx = Math.max(env1.maxx, env2.maxx);
         let maxy = Math.max(env1.maxy, env2.maxy);
-        return { minx, miny, maxx, maxy };
+        return new Envelope(minx, miny, maxx, maxy);
     }
 
-    static unionAll(envelopes: IEnvelope[]): IEnvelope {
+    static unionAll(envelopes: IEnvelope[]): Envelope {
         let envelope = Envelope.init();
         envelopes.forEach(e => envelope.expand(e));
 
