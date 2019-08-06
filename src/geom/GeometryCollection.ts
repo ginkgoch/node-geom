@@ -4,6 +4,7 @@ import GeometryCollectionBase from "./GeometryCollectionBase";
 import GeometryFactory from "./GeometryFactory";
 import IGeoJson from "../base/IGeoJson";
 import GeomUtils from "../shared/GeomUtils";
+import ICoordinate from "../base/ICoordinate";
 
 /**
  * @category geom
@@ -32,6 +33,10 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
 
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createGeometryCollection(this.children.map(l => l._ts()));
+    }
+
+    protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        return new GeometryCollection(this._cloneChildren(convert));
     }
 
     static _from(geometryCollection: jsts.geom.GeometryCollection): GeometryCollection {

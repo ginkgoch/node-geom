@@ -36,6 +36,13 @@ export default class Polygon extends Geometry {
         );
     }
 
+    protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        let rings = [ this.externalRing, ...this.internalRings ];
+        rings = rings.map(r => r.clone(convert) as LinearRing);
+        let tmpRing = rings.shift();
+        return new Polygon(tmpRing, ...rings);
+    }
+
     static _from(polygon: jsts.geom.Polygon): Polygon {
         const geom = new Polygon(
             LinearRing._from(polygon.getExteriorRing())
