@@ -32,6 +32,15 @@ export default class Point extends Geometry {
         return Geometry._factory.createPoint(coordinate);
     }
 
+    protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        let tmp = {x: this.x, y: this.y };
+        if (convert !== undefined) {
+            tmp = convert(tmp);
+        }
+
+        return new Point(tmp.x, tmp.y);
+    }
+
     static _from(point: jsts.geom.Point): Point {
         return new Point(point.getX(), point.getY());
     }

@@ -27,4 +27,8 @@ export default abstract class GeometryCollectionBase<T extends Geometry> extends
         const coordinates = _.flatMap(this._geometries, geom => geom.coordinatesFlat())
         return coordinates;
     }
+
+    protected _cloneChildren<T extends Geometry>(convert?: (coordinate: ICoordinate) => ICoordinate) {
+        return this.children.map(c => c.clone(convert) as T);
+    }
 }

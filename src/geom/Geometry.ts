@@ -62,6 +62,14 @@ export default abstract class Geometry {
 
     abstract _ts(): jsts.geom.Geometry;
 
+    clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        const geom = this._clone(convert);
+        geom.id = this.id;
+        return geom;
+    }
+
+    protected abstract _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry;
+
     wkt(): string {
         const geomTS = this._ts();
         const writer = new jsts.io.WKTWriter();
