@@ -3,6 +3,7 @@ import LineString from "./LineString";
 import GeometryCollectionBase from "./GeometryCollectionBase";
 import { GeometryType } from "./GeometryType";
 import Geometry from "./Geometry";
+import ICoordinate from "../base/ICoordinate";
 
 export default class MultiLineString extends GeometryCollectionBase<LineString> {
     constructor(lines?: LineString[]) {
@@ -15,6 +16,10 @@ export default class MultiLineString extends GeometryCollectionBase<LineString> 
 
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createMultiLineString(this.children.map(l => l._ts() as jsts.geom.LineString));
+    }
+
+    protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        return new MultiLineString(this._cloneChildren(convert));
     }
 
     static _from(multiline: jsts.geom.MultiLineString): MultiLineString {

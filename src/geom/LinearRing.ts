@@ -49,6 +49,19 @@ export default class LinearRing extends Geometry {
         return Geometry._factory.createLinearRing(this._coordinates.map(c => new jsts.geom.Coordinate(c.x, c.y)));
     }
 
+    protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
+        let tmpCoordinate = this._coordinates.map(c => {
+            let tmp = _.clone(c);
+            if (convert !== undefined) {
+                tmp = convert(tmp);
+            }
+
+            return tmp;
+        });
+
+        return new LinearRing(tmpCoordinate);
+    }
+
     static _from(ring: jsts.geom.LinearRing): LinearRing {
         return new LinearRing(ring.getCoordinates().map(c => ({ x: c.x, y: c.y })));
     }
