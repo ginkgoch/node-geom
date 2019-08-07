@@ -74,4 +74,25 @@ export default class Feature implements IFeature {
             return new Feature(geomClone, props, this.id);
         }
     }
+
+    static create(feature: IFeature): Feature
+    static create(json: IGeoJson): Feature
+    static create(param: IGeoJson | IFeature): Feature {
+        if ('geometry' in param && param.geometry instanceof Geometry) {
+            const feature = param as IFeature;
+            return new Feature(feature.geometry, feature.properties, feature.id);
+        } else {
+            const json = param as IGeoJson;
+            if (json.type !== Constants.TYPE_FEATURE) {
+                throw new Error('Not a feature json.');
+            }
+
+            if (json.geometry === undefined) {
+                throw new Error('Invalid feature json.');
+            }
+
+            const geom = GeometryFactory.create(json.geometry);
+            return new Feature(geom, json.properties, json.id);
+        }
+    }
 }
