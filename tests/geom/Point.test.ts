@@ -8,15 +8,15 @@ describe('Point', () => {
         let point = new Point();
         expect(point.type).toBe(GeometryType.Point);
 
-        expect(point.x).toBeNaN();
-        expect(point.y).toBeNaN();
+        expect(point.x).toBe(0);
+        expect(point.y).toBe(0);
 
         let randX = Utils._randomHorizontal();
         let randY = Utils._randomVertical();
 
         point = new Point(randX);
         expect(point.x).toBe(randX);
-        expect(point.y).toBeNaN();
+        expect(point.y).toBe(0);
 
         point = new Point(randX, randY);
         expect(point.x).toBe(randX);

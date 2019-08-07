@@ -5,8 +5,8 @@ import { GeometryType } from "./GeometryType";
 import ICoordinate from "../base/ICoordinate";
 
 export default class Point extends Geometry {
-    x: number = NaN
-    y: number = NaN
+    x: number = 0
+    y: number = 0
 
     constructor(x?: number, y?: number) {
         super();
