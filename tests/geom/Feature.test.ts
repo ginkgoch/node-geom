@@ -1,5 +1,6 @@
-import { Feature, Point } from "../../src/index";
+import { Feature, Point, IFeature } from "../../src/index";
 import Utils from '../shared/Utils';
+import Constants from "../../src/shared/Constants";
 
 describe('Feature', () => {
     it('Feature - constructor 1', () => {
@@ -10,7 +11,7 @@ describe('Feature', () => {
 
         const json = {
             id: 0,
-            type: 'feature',
+            type: 'Feature',
             geometry: { type: 'Point', coordinates: [34.5, 89.4] },
             properties: { name: 'Nelson', age: 40 }
         }
@@ -30,7 +31,7 @@ describe('Feature', () => {
 
         const json = {
             id,
-            type: 'feature',
+            type: 'Feature',
             geometry: { type: 'Point', coordinates: [34.5, 89.4] },
             properties: { RECID: 1, NAME: 'Nelson' }
         };
@@ -92,5 +93,20 @@ describe('Feature', () => {
         expect(f.geometry).toEqual(new Point(23, 45));
         expect(f.properties.size).toEqual(1);
         expect(f.properties.get('name')).toEqual('Samuel');
+    });
+
+    it('create', () => {
+        const geom = new Point(23, 34);
+        const props = { name: 'Samuel', age: 35 };
+        const id = 78;
+        const feature1 = new Feature(geom, props, id);
+        const json1 = feature1.json();
+
+        const feature2 = Feature.create(json1);
+        expect(feature2).toEqual(feature1);
+
+        const f = { type: Constants.TYPE_FEATURE, id, geometry: geom, properties: new Map<string, any>([['name', 'Samuel'], ['age', 35]]) };
+        const feature3 = Feature.create(f);
+        expect(feature3).toEqual(feature1);
     });
 });
