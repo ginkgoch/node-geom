@@ -2,3 +2,4 @@ node_modules/
 built/
 dist/
 yarn.lock
+yarn-error.log
