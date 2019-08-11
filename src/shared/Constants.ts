@@ -5,5 +5,6 @@ export default class Constants {
     static readonly SIZE_POINT = 16;
     static readonly SIZE_GEOM_TYPE = 4;
 
-    static readonly TYPE_FEATURE = 'feature';
+    static readonly TYPE_FEATURE = 'Feature';
+    static readonly TYPE_FEATURE_COLLECTION = 'FeatureCollection'
 }

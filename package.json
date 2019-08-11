@@ -1,6 +1,6 @@
 {
   "name": "ginkgoch-geom",
-  "version": "1.2.0",
+  "version": "1.5.0",
   "description": "This project provides the basic functions for geometries. It allows to convert between `wkt`, `wkb`, `json` and our `well formatted geometry classes` to construct `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon` and `GeometryCollection`. It is also a baseline project for building the entire `Ginkgoch Ecosystem`.",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,12 @@
     "name": "Ginkgoch",
     "email": "ginkgoch@outlook.com",
     "url": "https://github.com/ginkgoch/node-geom"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jest",
+    "build": "rm -rf dist && ./node_modules/.bin/webpack",
+    "doc": "rm -rf docs && ./node_modules/.bin/typedoc --out docs --module commonjs --mode file ./src",
+    "clean": "rm -rf dist && rm -rf built"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
@@ -20,13 +26,6 @@
     "typescript": "^3.5.3",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/jest",
-    "build": "rm -rf dist && ./node_modules/.bin/tsc",
-    "build-prod": "rm -rf dist && ./node_modules/.bin/webpack",
-    "doc": "rm -rf docs && ./node_modules/.bin/typedoc --out docs --module commonjs --mode file ./src",
-    "clean": "rm -rf dist && rm -rf built"
   },
   "dependencies": {
     "@types/jsts": "^0.17.0",
