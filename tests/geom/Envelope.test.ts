@@ -67,4 +67,10 @@ describe('envelope helper test', () => {
         const result = Envelope.unionAll([ envelope1, envelope2, envelope3, envelope4 ]);
         expect(result).toEqual({ minx: -20, miny: -20, maxx: 20, maxy: 20 });
     });
+
+    it('size', () => {
+        const envelope1 = new Envelope(-180, -90, 180, 90);
+        expect(envelope1.width).toBe(360);
+        expect(envelope1.height).toBe(180);
+    });
 });
