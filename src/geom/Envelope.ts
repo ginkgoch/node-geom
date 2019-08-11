@@ -18,6 +18,14 @@ export default class Envelope implements IEnvelope {
         this.maxy = maxy;
     }
 
+    get width(): number {
+        return Math.abs(this.maxx - this.minx);
+    }
+
+    get height(): number {
+        return Math.abs(this.maxy - this.miny);
+    }
+
     centroid(): ICoordinate {
         return { x: (this.minx + this.maxx) * .5, y: (this.miny + this.maxy) * .5 };
     }
