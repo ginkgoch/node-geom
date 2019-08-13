@@ -451,18 +451,66 @@ export default class WkbUtils {
     }
 
     static _writeGeomType(writer: BufferWriter, geomType: GeometryType, bigEndian: boolean) {
+        const geomNum = this._geomTypeToGeomNum(geomType);
         if (bigEndian) {
-            writer.writeInt32BE(geomType);
+            writer.writeInt32BE(geomNum);
         } else {
-            writer.writeInt32LE(geomType);
+            writer.writeInt32LE(geomNum);
         }
     }
 
     static _readGeomType(reader: BufferReader, bigEndian: boolean): GeometryType {
+        let geomNum: number;
         if (bigEndian) {
-            return reader.nextInt32BE();
+            geomNum = reader.nextInt32BE();
         } else {
-            return reader.nextInt32LE();
+            geomNum = reader.nextInt32LE();
+        }
+
+        return this._geomNumToGeomType(geomNum);
+    }
+
+    private static _geomTypeToGeomNum(geomType: GeometryType): number {
+        switch (geomType) {
+            case GeometryType.Point:
+                return 1;
+            case GeometryType.LineString:
+                return 2;
+            case GeometryType.Polygon:
+                return 3;
+            case GeometryType.MultiPoint:
+                return 4;
+            case GeometryType.MultiLineString:
+                return 5;
+            case GeometryType.MultiPolygon:
+                return 6;
+            case GeometryType.GeometryCollection:
+                return 7;
+            case GeometryType.Unknown:
+            default:
+                return 0;
+        }
+    }
+
+    private static _geomNumToGeomType(num: number): GeometryType {
+        switch (num) {
+            case 1:
+                return GeometryType.Point;
+            case 2:
+                return GeometryType.LineString;
+            case 3:
+                return GeometryType.Polygon;
+            case 4:
+                return GeometryType.MultiPoint;
+            case 5:
+                return GeometryType.MultiLineString;
+            case 6:
+                return GeometryType.MultiPolygon;
+            case 7:
+                return GeometryType.GeometryCollection;
+            case 0:
+            default:
+                return GeometryType.Unknown;
         }
     }
 }
