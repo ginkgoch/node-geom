@@ -9,8 +9,23 @@ import IGeoJson from '../base/IGeoJson';
 import WkbUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
+import { IEnvelope } from '..';
 
 export default class GeometryFactory {
+    static createPolygon(envelope: IEnvelope) {
+        return new Polygon(this.createLinearRing(envelope));
+    }
+
+    static createLinearRing(envelope: IEnvelope) {
+        return new LinearRing([
+            [envelope.minx, envelope.maxy],
+            [envelope.maxx, envelope.maxy],
+            [envelope.maxx, envelope.miny],
+            [envelope.minx, envelope.miny],
+            [envelope.minx, envelope.maxy]
+        ].map(v => ({ x: v[0], y: v[1] })));
+    }
+
     static create(geomTS: jsts.geom.Geometry): Geometry
     static create(wkt: string): Geometry
     static create(wkb: Buffer): Geometry
