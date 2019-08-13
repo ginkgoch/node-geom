@@ -12,11 +12,25 @@ import GeometryCollection from "./GeometryCollection";
 import { IEnvelope } from '..';
 
 export default class GeometryFactory {
+    /**
+     * @deprecated Use envelopeAsPolygon(envelope: IEnvelope) instead.
+     */
     static createPolygon(envelope: IEnvelope) {
+        return this.envelopeAsPolygon(envelope);
+    }
+
+    static envelopeAsPolygon(envelope: IEnvelope) {
         return new Polygon(this.createLinearRing(envelope));
     }
 
+    /**
+     * @deprecated Use envelopeAsLinearRing(envelope: IEnvelope) instead.
+     */
     static createLinearRing(envelope: IEnvelope) {
+        return this.envelopeAsLinearRing(envelope);
+    }
+
+    static envelopeAsLinearRing(envelope: IEnvelope) {
         return new LinearRing([
             [envelope.minx, envelope.maxy],
             [envelope.maxx, envelope.maxy],
