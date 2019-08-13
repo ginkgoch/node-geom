@@ -2,18 +2,19 @@ import Feature from "./Feature";
 import Envelope from "./Envelope";
 import Constants from "../shared/Constants";
 import IGeoJson from "../base/IGeoJson";
+import { IFeature } from "..";
 
 export default class FeatureCollection {
     id = 0
     features = new Array<Feature>();
     type = Constants.TYPE_FEATURE_COLLECTION;
 
-    constructor(features?: Array<Feature>, id?: number) {
+    constructor(features?: Array<IFeature>, id?: number) {
         if (id !== undefined) this.id = id;
 
         if (features === undefined) return;
 
-        features.forEach(f => this.features.push(f));
+        features.forEach(f => this.features.push(Feature.create(f)));
     }
 
     envelope() {
