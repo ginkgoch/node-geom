@@ -1,7 +1,6 @@
 import * as jsts from 'jsts';
 import Envelope from "./Envelope";
 import IGeoJson from "../base/IGeoJson";
-import GeomUtils from "../shared/GeomUtils";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
@@ -55,7 +54,7 @@ export default abstract class Geometry {
 
     json(): IGeoJson {
         return {
-            type: GeomUtils.geomTypeName(this.type),
+            type: this.type,
             coordinates: this.coordinates()
         }
     }
