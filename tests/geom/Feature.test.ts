@@ -16,7 +16,7 @@ describe('Feature', () => {
             properties: { name: 'Nelson', age: 40 }
         }
 
-        const json_ = feature.json();
+        const json_ = feature.toJSON();
         expect(json_).toEqual(json);
     });
 
@@ -36,7 +36,7 @@ describe('Feature', () => {
             properties: { RECID: 1, NAME: 'Nelson' }
         };
 
-        const json_ = feature.json();
+        const json_ = feature.toJSON();
         expect(json_).toEqual(json);
     });
 
@@ -100,7 +100,7 @@ describe('Feature', () => {
         const props = { name: 'Samuel', age: 35 };
         const id = 78;
         const feature1 = new Feature(geom, props, id);
-        const json1 = feature1.json();
+        const json1 = feature1.toJSON();
 
         const feature2 = Feature.create(json1);
         expect(feature2).toEqual(feature1);

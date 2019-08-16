@@ -21,11 +21,11 @@ export default class FeatureCollection {
         return Envelope.unionAll(this.features.map(f => f.envelope()));
     }
 
-    json() {
+    toJSON() {
         return {
             id: this.id,
             type: this.type,
-            features: this.features.map(f => f.json())
+            features: this.features.map(f => f.toJSON())
         };
     }
 

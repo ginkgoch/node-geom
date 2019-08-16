@@ -35,8 +35,8 @@ export default class LinearRing extends Geometry {
         return this._coordinates.map(c => [c.x, c.y]);
     }
     
-    json(): IGeoJson {
-        return new Polygon(this).json();
+    toJSON(): IGeoJson {
+        return new Polygon(this).toJSON();
     }
 
     closed() {

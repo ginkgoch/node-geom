@@ -84,7 +84,7 @@ describe('GeometryFactory', () => {
 });
 
 function testCreate(geom: Geometry) {
-    const wkt = geom.wkt();
+    const wkt = geom.toWKT();
     const point2 = GeometryFactory.create(wkt);
     const point3 = GeometryFactory.create(geom._ts());
 

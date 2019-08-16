@@ -11,7 +11,7 @@ describe('FeatureCollection', () => {
 
         const fc = new FeatureCollection([f1, f2]);
         const expectedJson = { "id": 0, "type": "FeatureCollection", "features": [{ "id": 0, "type": "Feature", "geometry": { "type": "Point", "coordinates": [90, 70] }, "properties": { "name": "Samuel", "age": 18 } }, { "id": 0, "type": "Feature", "geometry": { "type": "LineString", "coordinates": [[0, 0], [40, 40], [50, -90]] }, "properties": { "name": "Sofia", "age": 16 } }] };
-        expect(fc.json()).toEqual(expectedJson);
+        expect(fc.toJSON()).toEqual(expectedJson);
 
         const fc2 = FeatureCollection.create(expectedJson);
         expect(fc2).toEqual(fc);
