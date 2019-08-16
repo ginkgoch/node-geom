@@ -3,7 +3,7 @@ import Constants from "../shared/Constants";
 import { Geometry, IGeoJson, GeometryFactory } from "..";
 
 export default class Feature implements IFeature {
-    id: number = 0;    
+    id: number = 0;
     geometry: Geometry;
     properties: Map<string, any>;
 
@@ -13,7 +13,7 @@ export default class Feature implements IFeature {
      * @param {Map<string, any>} properties The properties of this feature. Default is empty map.
      * @param id The id of this feature. Default id is the same as geometry's id.
      */
-    constructor(geom: Geometry|IGeoJson, properties?: Map<string, any>|any, id?: number) {
+    constructor(geom: Geometry | IGeoJson, properties?: Map<string, any> | any, id?: number) {
         if (geom instanceof Geometry) {
             this.geometry = geom;
         } else {
@@ -44,7 +44,7 @@ export default class Feature implements IFeature {
         return Constants.TYPE_FEATURE;
     }
 
-    json() {
+    toJSON() {
         const properties = {} as any;
         this.properties.forEach((v, k, m) => {
             properties[k] = v;
@@ -53,7 +53,7 @@ export default class Feature implements IFeature {
         return {
             id: this.id,
             type: this.type,
-            geometry: this.geometry.json(),
+            geometry: this.geometry.toJSON(),
             properties
         };
     }

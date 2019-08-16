@@ -1,6 +1,6 @@
 import * as jsts from 'jsts';
 import Envelope from "./Envelope";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
@@ -52,7 +52,7 @@ export default abstract class Geometry {
         return tsGeom1.getLength();
     }
 
-    json(): IGeoJson {
+    toJSON(): IGeoJSON {
         return {
             type: this.type,
             coordinates: this.coordinates()
@@ -69,16 +69,16 @@ export default abstract class Geometry {
 
     protected abstract _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry;
 
-    wkt(): string {
+    toWKT(): string {
         const geomTS = this._ts();
         const writer = new jsts.io.WKTWriter();
         const wkt = writer.write(geomTS);
         return wkt;
     }
 
-    wkb(bigEndian = false): Buffer {
+    toWKB(bigEndian = false): Buffer {
         const WkbUtils = require("../shared/WkbUtils").default;
-        return WkbUtils.geomToWkb(this, bigEndian);
+        return WkbUtils.geomToWKB(this, bigEndian);
     }
 
     //#region 

@@ -1,34 +1,35 @@
 import Feature from "./Feature";
 import Envelope from "./Envelope";
 import Constants from "../shared/Constants";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
+import { IFeature } from "..";
 
 export default class FeatureCollection {
     id = 0
     features = new Array<Feature>();
     type = Constants.TYPE_FEATURE_COLLECTION;
 
-    constructor(features?: Array<Feature>, id?: number) {
+    constructor(features?: Array<IFeature>, id?: number) {
         if (id !== undefined) this.id = id;
 
         if (features === undefined) return;
 
-        features.forEach(f => this.features.push(f));
+        features.forEach(f => this.features.push(Feature.create(f)));
     }
 
     envelope() {
         return Envelope.unionAll(this.features.map(f => f.envelope()));
     }
 
-    json() {
+    toJSON() {
         return {
             id: this.id,
             type: this.type,
-            features: this.features.map(f => f.json())
+            features: this.features.map(f => f.toJSON())
         };
     }
 
-    static create(json: IGeoJson): FeatureCollection {
+    static create(json: IGeoJSON): FeatureCollection {
         if (json.type !== Constants.TYPE_FEATURE_COLLECTION) {
             throw new Error('Not a FeatureCollection json.');
         }

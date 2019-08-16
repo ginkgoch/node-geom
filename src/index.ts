@@ -17,7 +17,7 @@ import FeatureCollection from "./geom/FeatureCollection";
 import IFeature from "./base/IFeature";
 import ICoordinate from "./base/ICoordinate";
 import IEnvelope from "./base/IEnvelope";
-import IGeoJson from "./base/IGeoJson";
+import IGeoJSON from "./base/IGeoJSON";
 
 export {
     Envelope,
@@ -37,7 +37,7 @@ export {
     FeatureCollection,
     ICoordinate,
     IEnvelope,
-    IGeoJson,
+    IGeoJSON as IGeoJson,
     IFeature
 }
 

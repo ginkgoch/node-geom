@@ -23,7 +23,7 @@ describe('GeometryCollection', () => {
                 { x: -23.4, y: 87 }
             ])
         ]);
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'GeometryCollection');
 
         let geom2 = GeometryFactory.create(json);
@@ -39,7 +39,7 @@ describe('GeometryCollection', () => {
             ])
         ]);
 
-        const wkt = geom.wkt();
+        const wkt = geom.toWKT();
         expect(wkt).toEqual('GEOMETRYCOLLECTION(POINT(1 2),LINESTRING(23.4 -87,-23.4 87))');
     });
 

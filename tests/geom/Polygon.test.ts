@@ -14,7 +14,7 @@ describe('Polygon', () => {
 
     it('json', () => {
         let geom = new Polygon();
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'Polygon');
 
         let geom2 = GeometryFactory.create(json);
@@ -32,14 +32,14 @@ describe('Polygon', () => {
         expect(polygon.externalRing.coordinates().length).toBe(4);
         expect(polygon.internalRings.length).toBe(1);
 
-        let wkt = polygon.wkt();
+        let wkt = polygon.toWKT();
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2),(2 2,4 4,6 6,2 2))');
 
         polygon = new Polygon(
             new LinearRing(shell.map(c => ({ x: c[0], y: c[1] })))
         ); 
 
-        wkt = polygon.wkt();
+        wkt = polygon.toWKT();
         expect(wkt).toEqual('POLYGON((1 2,3 4,5 6,1 2))');
     });
 

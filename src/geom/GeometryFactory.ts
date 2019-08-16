@@ -5,18 +5,32 @@ import Polygon from "./Polygon";
 import Geometry from "./Geometry";
 import MultiPoint from "./MultiPoint";
 import LineString from "./LineString";
-import IGeoJson from '../base/IGeoJson';
-import WkbUtils from '../shared/WkbUtils';
+import IGeoJSON from '../base/IGeoJSON';
+import WKBUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
 import { IEnvelope } from '..';
 
 export default class GeometryFactory {
+    /**
+     * @deprecated Use envelopeAsPolygon(envelope: IEnvelope) instead.
+     */
     static createPolygon(envelope: IEnvelope) {
+        return this.envelopeAsPolygon(envelope);
+    }
+
+    static envelopeAsPolygon(envelope: IEnvelope) {
         return new Polygon(this.createLinearRing(envelope));
     }
 
+    /**
+     * @deprecated Use envelopeAsLinearRing(envelope: IEnvelope) instead.
+     */
     static createLinearRing(envelope: IEnvelope) {
+        return this.envelopeAsLinearRing(envelope);
+    }
+
+    static envelopeAsLinearRing(envelope: IEnvelope) {
         return new LinearRing([
             [envelope.minx, envelope.maxy],
             [envelope.maxx, envelope.maxy],
@@ -29,20 +43,20 @@ export default class GeometryFactory {
     static create(geomTS: jsts.geom.Geometry): Geometry
     static create(wkt: string): Geometry
     static create(wkb: Buffer): Geometry
-    static create(geoJson: IGeoJson): Geometry
-    static create(param: string | Buffer | jsts.geom.Geometry | IGeoJson): Geometry {
+    static create(geoJson: IGeoJSON): Geometry
+    static create(param: string | Buffer | jsts.geom.Geometry | IGeoJSON): Geometry {
         if (param instanceof jsts.geom.Geometry) {
             return GeometryFactory._createByGeom(param);
         } else if (param instanceof Buffer) {
-            return WkbUtils.wkbToGeom(param);
+            return WKBUtils.wkbToGeom(param);
         } else if (typeof param === 'string') {
-            return GeometryFactory._createByWkt(param);
+            return GeometryFactory._createByWKT(param);
         } else {
-            return GeometryFactory._createByGeoJson(param);
+            return GeometryFactory._createByGeoJSON(param);
         }
     }
 
-    private static _createByWkt(wkt: string): Geometry {
+    private static _createByWKT(wkt: string): Geometry {
         const reader = new jsts.io.WKTReader();
         const geomTS = reader.read(wkt);
         const geom = GeometryFactory.create(geomTS);
@@ -69,7 +83,7 @@ export default class GeometryFactory {
         }
     }
 
-    private static _createByGeoJson(json: IGeoJson): Geometry {
+    private static _createByGeoJSON(json: IGeoJSON): Geometry {
         const reader = new jsts.io.GeoJSONReader();
         const geom = reader.read(json)
         return GeometryFactory._createByGeom(geom);
