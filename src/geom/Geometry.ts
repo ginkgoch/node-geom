@@ -1,6 +1,6 @@
 import * as jsts from 'jsts';
 import Envelope from "./Envelope";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
@@ -52,7 +52,7 @@ export default abstract class Geometry {
         return tsGeom1.getLength();
     }
 
-    toJSON(): IGeoJson {
+    toJSON(): IGeoJSON {
         return {
             type: this.type,
             coordinates: this.coordinates()

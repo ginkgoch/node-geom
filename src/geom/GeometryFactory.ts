@@ -5,7 +5,7 @@ import Polygon from "./Polygon";
 import Geometry from "./Geometry";
 import MultiPoint from "./MultiPoint";
 import LineString from "./LineString";
-import IGeoJson from '../base/IGeoJson';
+import IGeoJSON from '../base/IGeoJSON';
 import WKBUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
@@ -43,8 +43,8 @@ export default class GeometryFactory {
     static create(geomTS: jsts.geom.Geometry): Geometry
     static create(wkt: string): Geometry
     static create(wkb: Buffer): Geometry
-    static create(geoJson: IGeoJson): Geometry
-    static create(param: string | Buffer | jsts.geom.Geometry | IGeoJson): Geometry {
+    static create(geoJson: IGeoJSON): Geometry
+    static create(param: string | Buffer | jsts.geom.Geometry | IGeoJSON): Geometry {
         if (param instanceof jsts.geom.Geometry) {
             return GeometryFactory._createByGeom(param);
         } else if (param instanceof Buffer) {
@@ -83,7 +83,7 @@ export default class GeometryFactory {
         }
     }
 
-    private static _createByGeoJSON(json: IGeoJson): Geometry {
+    private static _createByGeoJSON(json: IGeoJSON): Geometry {
         const reader = new jsts.io.GeoJSONReader();
         const geom = reader.read(json)
         return GeometryFactory._createByGeom(geom);

@@ -2,7 +2,7 @@ import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
 import GeometryCollectionBase from "./GeometryCollectionBase";
 import GeometryFactory from "./GeometryFactory";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
 import ICoordinate from "../base/ICoordinate";
 
 /**
@@ -23,7 +23,7 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
         return this._geometries;
     }
 
-    toJSON(): IGeoJson {
+    toJSON(): IGeoJSON {
         return {
             type: this.type,
             geometries: this._geometries.map(g => g.toJSON())

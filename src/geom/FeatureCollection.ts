@@ -1,7 +1,7 @@
 import Feature from "./Feature";
 import Envelope from "./Envelope";
 import Constants from "../shared/Constants";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
 import { IFeature } from "..";
 
 export default class FeatureCollection {
@@ -29,7 +29,7 @@ export default class FeatureCollection {
         };
     }
 
-    static create(json: IGeoJson): FeatureCollection {
+    static create(json: IGeoJSON): FeatureCollection {
         if (json.type !== Constants.TYPE_FEATURE_COLLECTION) {
             throw new Error('Not a FeatureCollection json.');
         }

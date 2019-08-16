@@ -4,7 +4,7 @@ import Geometry from "./Geometry";
 import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 import Polygon from "./Polygon";
-import IGeoJson from "../base/IGeoJson";
+import IGeoJSON from "../base/IGeoJSON";
 
 export default class LinearRing extends Geometry {
     _coordinates: ICoordinate[];
@@ -35,7 +35,7 @@ export default class LinearRing extends Geometry {
         return this._coordinates.map(c => [c.x, c.y]);
     }
     
-    toJSON(): IGeoJson {
+    toJSON(): IGeoJSON {
         return new Polygon(this).toJSON();
     }
 
