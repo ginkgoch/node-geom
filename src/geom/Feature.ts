@@ -44,7 +44,7 @@ export default class Feature implements IFeature {
         return Constants.TYPE_FEATURE;
     }
 
-    json() {
+    toJSON() {
         const properties = {} as any;
         this.properties.forEach((v, k, m) => {
             properties[k] = v;
@@ -53,7 +53,7 @@ export default class Feature implements IFeature {
         return {
             id: this.id,
             type: this.type,
-            geometry: this.geometry.json(),
+            geometry: this.geometry.toJSON(),
             properties
         };
     }

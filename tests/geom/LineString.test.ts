@@ -50,7 +50,7 @@ describe('LineString', () => {
             {x: 100, y: 100}
         ]);
 
-        let json = line.json();
+        let json = line.toJSON();
         Utils.validateJsonResult(json, 'LineString');
 
         let line2 = GeometryFactory.create(json);
@@ -63,7 +63,7 @@ describe('LineString', () => {
             {x: 100, y: 100}
         ]);
 
-        const wkt = line.wkt();
+        const wkt = line.toWKT();
         expect(wkt).toEqual('LINESTRING(0 0,100 100)');
     })
 

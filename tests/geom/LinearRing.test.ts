@@ -95,11 +95,11 @@ describe('LinearRing', () => {
             {x: 0, y: 100},
             {x: 0, y: 0}
         ]);
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'Polygon');
 
         let geom2 = GeometryFactory.create(json);
-        let json2 = geom2.json()
+        let json2 = geom2.toJSON()
         expect(json).toEqual(json2);
     });
 
@@ -112,7 +112,7 @@ describe('LinearRing', () => {
         ];
         
         const ring = new LinearRing([v1, v2, v3, v4]);
-        const wkt = ring.wkt();
+        const wkt = ring.toWKT();
         expect(wkt).toEqual('LINEARRING(1.2 4.5,2 3.99,22 32.111,43.4 78.222,1.2 4.5)');
     });
 });

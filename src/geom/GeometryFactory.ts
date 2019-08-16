@@ -6,7 +6,7 @@ import Geometry from "./Geometry";
 import MultiPoint from "./MultiPoint";
 import LineString from "./LineString";
 import IGeoJson from '../base/IGeoJson';
-import WkbUtils from '../shared/WkbUtils';
+import WKBUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
 import { IEnvelope } from '..';
@@ -48,15 +48,15 @@ export default class GeometryFactory {
         if (param instanceof jsts.geom.Geometry) {
             return GeometryFactory._createByGeom(param);
         } else if (param instanceof Buffer) {
-            return WkbUtils.wkbToGeom(param);
+            return WKBUtils.wkbToGeom(param);
         } else if (typeof param === 'string') {
-            return GeometryFactory._createByWkt(param);
+            return GeometryFactory._createByWKT(param);
         } else {
-            return GeometryFactory._createByGeoJson(param);
+            return GeometryFactory._createByGeoJSON(param);
         }
     }
 
-    private static _createByWkt(wkt: string): Geometry {
+    private static _createByWKT(wkt: string): Geometry {
         const reader = new jsts.io.WKTReader();
         const geomTS = reader.read(wkt);
         const geom = GeometryFactory.create(geomTS);
@@ -83,7 +83,7 @@ export default class GeometryFactory {
         }
     }
 
-    private static _createByGeoJson(json: IGeoJson): Geometry {
+    private static _createByGeoJSON(json: IGeoJson): Geometry {
         const reader = new jsts.io.GeoJSONReader();
         const geom = reader.read(json)
         return GeometryFactory._createByGeom(geom);

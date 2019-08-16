@@ -15,106 +15,106 @@ import { GeometryType } from "../geom/GeometryType";
 import MultiLineString from "../geom/MultiLineString";
 import GeometryCollection from "../geom/GeometryCollection";
 
-export default class WkbUtils {
+export default class WKBUtils {
     static wkbToGeom(buff: Buffer): Geometry {
         const reader = new BufferReader(buff);
-        const bigEndian = WkbUtils._readByteEndian(reader);
-        const geomType = WkbUtils._readGeomType(reader, bigEndian);
+        const bigEndian = WKBUtils._readByteEndian(reader);
+        const geomType = WKBUtils._readGeomType(reader, bigEndian);
         switch (geomType) {
             case GeometryType.Point:
-                return WkbUtils._readPoint(reader, bigEndian);
+                return WKBUtils._readPoint(reader, bigEndian);
             case GeometryType.LineString:
-                return WkbUtils._readLine(reader, bigEndian);
+                return WKBUtils._readLine(reader, bigEndian);
             case GeometryType.Polygon:
-                return WkbUtils._readPolygon(reader, bigEndian);
+                return WKBUtils._readPolygon(reader, bigEndian);
             case GeometryType.MultiPoint:
-                return WkbUtils._readMultiPoint(reader, bigEndian);
+                return WKBUtils._readMultiPoint(reader, bigEndian);
             case GeometryType.MultiLineString:
-                return WkbUtils._readMultiLine(reader, bigEndian);
+                return WKBUtils._readMultiLine(reader, bigEndian);
             case GeometryType.MultiPolygon:
-                return WkbUtils._readMultiPolygon(reader, bigEndian);
+                return WKBUtils._readMultiPolygon(reader, bigEndian);
             case GeometryType.GeometryCollection:
-                return WkbUtils._readGeomCollection(reader, bigEndian);
+                return WKBUtils._readGeomCollection(reader, bigEndian);
             default:
                 throw new Error('Not supported wkb.');
         }
     }
 
-    static geomToWkb(geom: Geometry, bigEndian = false): Buffer {
+    static geomToWKB(geom: Geometry, bigEndian = false): Buffer {
         if (geom instanceof Point) {
-            return WkbUtils._pointToWkb(geom, bigEndian);
+            return WKBUtils._pointToWKB(geom, bigEndian);
         } else if (geom instanceof LineString) {
-            return WkbUtils._lineToWkb(geom, bigEndian);
+            return WKBUtils._lineToWKB(geom, bigEndian);
         } else if (geom instanceof Polygon) {
-            return WkbUtils._polygonToWkb(geom, bigEndian);
+            return WKBUtils._polygonToWKB(geom, bigEndian);
         } else if (geom instanceof MultiPoint) {
-            return WkbUtils._multiPointToWkb(geom, bigEndian);
+            return WKBUtils._multiPointToWKB(geom, bigEndian);
         } else if (geom instanceof MultiLineString) {
-            return WkbUtils._multiLineToWkb(geom, bigEndian);
+            return WKBUtils._multiLineToWKB(geom, bigEndian);
         } else if (geom instanceof MultiPolygon) {
-            return WkbUtils._multiPolygonToWkb(geom, bigEndian);
+            return WKBUtils._multiPolygonToWKB(geom, bigEndian);
         } else if (geom instanceof GeometryCollection) {
-            return WkbUtils._geomCollectionToWkb(geom, bigEndian);
+            return WKBUtils._geomCollectionToWKB(geom, bigEndian);
         } else {
             throw new Error('Unknown geometry.')
         }
     }
 
-    static _geomCollectionToWkb(geom: GeometryCollection, bigEndian: boolean): Buffer {
-        const buff = Buffer.alloc(WkbUtils._sizeOfGeomCollection(geom));
+    static _geomCollectionToWKB(geom: GeometryCollection, bigEndian: boolean): Buffer {
+        const buff = Buffer.alloc(WKBUtils._sizeOfGeomCollection(geom));
         const writer = new BufferWriter(buff);
-        WkbUtils._writeGeomCollection(writer, geom, bigEndian);
+        WKBUtils._writeGeomCollection(writer, geom, bigEndian);
         return buff;
     }
 
     static _sizeOfGeomCollection(geom: GeometryCollection) {
         return 1 + Constants.SIZE_GEOM_TYPE +
             Constants.SIZE_INT32 +
-            _.sumBy(geom.children, g => WkbUtils._sizeOfGeom(g));
+            _.sumBy(geom.children, g => WKBUtils._sizeOfGeom(g));
     }
 
     static _sizeOfGeom(g: Geometry): number {
         if (g instanceof Point) {
-            return WkbUtils._sizeOfPoint();
+            return WKBUtils._sizeOfPoint();
         } else if (g instanceof LineString) {
-            return WkbUtils._sizeOfLine(g);
+            return WKBUtils._sizeOfLine(g);
         } else if (g instanceof Polygon) {
-            return WkbUtils._sizeOfPolygon(g);
+            return WKBUtils._sizeOfPolygon(g);
         } else if (g instanceof MultiPoint) {
-            return WkbUtils._sizeOfMultiPoint(g);
+            return WKBUtils._sizeOfMultiPoint(g);
         } else if (g instanceof MultiLineString) {
-            return WkbUtils._sizeOfMultiLine(g);
+            return WKBUtils._sizeOfMultiLine(g);
         } else if (g instanceof MultiPolygon) {
-            return WkbUtils._sizeOfMultiPolygon(g);
+            return WKBUtils._sizeOfMultiPolygon(g);
         } else if (g instanceof GeometryCollection) {
-            return WkbUtils._sizeOfGeomCollection(g);
+            return WKBUtils._sizeOfGeomCollection(g);
         } else {
             throw new Error('Unsupported geometry.')
         }
     }
 
     static _writeGeomCollection(writer: BufferWriter, geom: GeometryCollection, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.GeometryCollection, bigEndian);
-        WkbUtils._writeInt32(writer, geom.children.length, bigEndian);
-        geom.children.forEach(g => WkbUtils._writeGeom(writer, g, bigEndian));
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.GeometryCollection, bigEndian);
+        WKBUtils._writeInt32(writer, geom.children.length, bigEndian);
+        geom.children.forEach(g => WKBUtils._writeGeom(writer, g, bigEndian));
     }
 
     static _writeGeom(writer: BufferWriter, g: Geometry, bigEndian: boolean) {
         if (g instanceof Point) {
-            WkbUtils._writePoint(writer, g, bigEndian);
+            WKBUtils._writePoint(writer, g, bigEndian);
         } else if (g instanceof LineString) {
-            WkbUtils._writeLine(writer, g, bigEndian);
+            WKBUtils._writeLine(writer, g, bigEndian);
         } else if (g instanceof Polygon) {
-            WkbUtils._writePolygon(writer, g, bigEndian);
+            WKBUtils._writePolygon(writer, g, bigEndian);
         } else if (g instanceof MultiPoint) {
-            WkbUtils._writeMultiPoint(writer, g, bigEndian);
+            WKBUtils._writeMultiPoint(writer, g, bigEndian);
         } else if (g instanceof MultiLineString) {
-            WkbUtils._writeMultiLine(writer, g, bigEndian);
+            WKBUtils._writeMultiLine(writer, g, bigEndian);
         } else if (g instanceof MultiPolygon) {
-            WkbUtils._writeMultiPolygon(writer, g, bigEndian);
+            WKBUtils._writeMultiPolygon(writer, g, bigEndian);
         } else if (g instanceof GeometryCollection) {
-            WkbUtils._writeGeomCollection(writer, g, bigEndian);
+            WKBUtils._writeGeomCollection(writer, g, bigEndian);
         } else {
             throw new Error('Unsupported geometry.')
         }
@@ -122,9 +122,9 @@ export default class WkbUtils {
 
     static _readGeomCollection(reader: BufferReader, bigEndian: boolean) {
         const geomCollection = new GeometryCollection();
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
         for (let i = 0; i < count; i++) {
-            const geom = WkbUtils._readGeom(reader);
+            const geom = WKBUtils._readGeom(reader);
             geomCollection.children.push(geom);
         }
 
@@ -132,73 +132,73 @@ export default class WkbUtils {
     }
 
     static _readGeom(reader: BufferReader): Geometry {
-        const bigEndian = WkbUtils._readByteEndian(reader);
-        const geomType = WkbUtils._readGeomType(reader, bigEndian);
+        const bigEndian = WKBUtils._readByteEndian(reader);
+        const geomType = WKBUtils._readGeomType(reader, bigEndian);
         switch (geomType) {
             case GeometryType.Point:
-                return WkbUtils._readPoint(reader, bigEndian);
+                return WKBUtils._readPoint(reader, bigEndian);
             case GeometryType.LineString:
-                return WkbUtils._readLine(reader, bigEndian);
+                return WKBUtils._readLine(reader, bigEndian);
             case GeometryType.Polygon:
-                return WkbUtils._readPolygon(reader, bigEndian);
+                return WKBUtils._readPolygon(reader, bigEndian);
             case GeometryType.MultiPoint:
-                return WkbUtils._readMultiPoint(reader, bigEndian);
+                return WKBUtils._readMultiPoint(reader, bigEndian);
             case GeometryType.MultiLineString:
-                return WkbUtils._readMultiLine(reader, bigEndian);
+                return WKBUtils._readMultiLine(reader, bigEndian);
             case GeometryType.MultiPolygon:
-                return WkbUtils._readMultiPolygon(reader, bigEndian);
+                return WKBUtils._readMultiPolygon(reader, bigEndian);
             case GeometryType.GeometryCollection:
-                return WkbUtils._readGeomCollection(reader, bigEndian);
+                return WKBUtils._readGeomCollection(reader, bigEndian);
             default:
                 throw new Error('Unsupported geometry type.')
         }
     }
 
-    static _multiPolygonToWkb(geom: MultiPolygon, bigEndian: boolean) {
-        const size = WkbUtils._sizeOfMultiPolygon(geom);
+    static _multiPolygonToWKB(geom: MultiPolygon, bigEndian: boolean) {
+        const size = WKBUtils._sizeOfMultiPolygon(geom);
         const buff = Buffer.alloc(size);
         const writer = new BufferWriter(buff);
-        WkbUtils._writeMultiPolygon(writer, geom, bigEndian);
+        WKBUtils._writeMultiPolygon(writer, geom, bigEndian);
         return buff;
     }
 
     static _sizeOfMultiPolygon(geom: MultiPolygon) {
         return 1 + Constants.SIZE_GEOM_TYPE +
             Constants.SIZE_INT32 +
-            _.sumBy(geom.children, p => WkbUtils._sizeOfPolygon(p));
+            _.sumBy(geom.children, p => WKBUtils._sizeOfPolygon(p));
     }
 
     static _writeMultiPolygon(writer: BufferWriter, geom: MultiPolygon, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.MultiPolygon, bigEndian);
-        WkbUtils._writeInt32(writer, geom.children.length, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.MultiPolygon, bigEndian);
+        WKBUtils._writeInt32(writer, geom.children.length, bigEndian);
         geom.children.forEach(p => {
-            WkbUtils._writePolygon(writer, p, bigEndian);
+            WKBUtils._writePolygon(writer, p, bigEndian);
         });
     }
 
     static _readMultiPolygon(reader: BufferReader, bigEndian: boolean): Geometry {
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
         const multiPolygon = new MultiPolygon();
         for (let i = 0; i < count; i++) {
-            const currentBigEndian = WkbUtils._readByteEndian(reader);
-            const currentGeomType = WkbUtils._readGeomType(reader, currentBigEndian);
+            const currentBigEndian = WKBUtils._readByteEndian(reader);
+            const currentGeomType = WKBUtils._readGeomType(reader, currentBigEndian);
             assert(currentGeomType === GeometryType.Polygon, 'Non-Polygon in MultiPolygon.')
 
-            const polygon = WkbUtils._readPolygon(reader, bigEndian);
+            const polygon = WKBUtils._readPolygon(reader, bigEndian);
             multiPolygon.children.push(polygon);
         }
 
         return multiPolygon;
     }
 
-    static _multiLineToWkb(geom: MultiLineString, bigEndian: boolean) {
-        const size = WkbUtils._sizeOfMultiLine(geom);
+    static _multiLineToWKB(geom: MultiLineString, bigEndian: boolean) {
+        const size = WKBUtils._sizeOfMultiLine(geom);
 
         const buff = Buffer.alloc(size);
         const writer = new BufferWriter(buff);
 
-        WkbUtils._writeMultiLine(writer, geom, bigEndian);
+        WKBUtils._writeMultiLine(writer, geom, bigEndian);
 
         return buff;
     }
@@ -206,78 +206,78 @@ export default class WkbUtils {
     static _sizeOfMultiLine(geom: MultiLineString) {
         return 1 + Constants.SIZE_GEOM_TYPE +
             Constants.SIZE_INT32 +
-            _.sumBy(geom.children, l => WkbUtils._sizeOfLine(l));
+            _.sumBy(geom.children, l => WKBUtils._sizeOfLine(l));
     }
 
     static _writeMultiLine(writer: BufferWriter, geom: MultiLineString, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.MultiLineString, bigEndian);
-        WkbUtils._writeInt32(writer, geom.children.length, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.MultiLineString, bigEndian);
+        WKBUtils._writeInt32(writer, geom.children.length, bigEndian);
         geom.children.forEach(l => {
-            WkbUtils._writeByteEndian(writer, bigEndian);
-            WkbUtils._writeGeomType(writer, GeometryType.LineString, bigEndian);
-            WkbUtils._writeCoordinates(writer, l._coordinates, bigEndian);
+            WKBUtils._writeByteEndian(writer, bigEndian);
+            WKBUtils._writeGeomType(writer, GeometryType.LineString, bigEndian);
+            WKBUtils._writeCoordinates(writer, l._coordinates, bigEndian);
         });
     }
 
     static _readMultiLine(reader: BufferReader, bigEndian: boolean) {
         const multiLine = new MultiLineString();
 
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
         for (let i = 0; i < count; i++) {
-            const currentBigEndian = WkbUtils._readByteEndian(reader);
-            const currentGeomType = WkbUtils._readGeomType(reader, currentBigEndian);
+            const currentBigEndian = WKBUtils._readByteEndian(reader);
+            const currentGeomType = WKBUtils._readGeomType(reader, currentBigEndian);
             assert(currentGeomType === GeometryType.LineString, 'Non-LineString in MultiLineString.');
 
-            const currentCoordinates = WkbUtils._readCoordinates(reader, currentBigEndian);
+            const currentCoordinates = WKBUtils._readCoordinates(reader, currentBigEndian);
             multiLine.children.push(new LineString(currentCoordinates));
         }
 
         return multiLine;
     }
 
-    static _multiPointToWkb(geom: MultiPoint, bigEndian: boolean): Buffer {
-        const size = WkbUtils._sizeOfMultiPoint(geom);
+    static _multiPointToWKB(geom: MultiPoint, bigEndian: boolean): Buffer {
+        const size = WKBUtils._sizeOfMultiPoint(geom);
         const buff = Buffer.alloc(size);
         const writer = new BufferWriter(buff);
-        WkbUtils._writeMultiPoint(writer, geom, bigEndian);
+        WKBUtils._writeMultiPoint(writer, geom, bigEndian);
 
         return buff;
     }
 
     static _sizeOfMultiPoint(geom: MultiPoint) {
-        return 1 + Constants.SIZE_GEOM_TYPE + WkbUtils._sizeOfPoint() * geom.children.length;
+        return 1 + Constants.SIZE_GEOM_TYPE + WKBUtils._sizeOfPoint() * geom.children.length;
     }
 
     static _writeMultiPoint(writer: BufferWriter, geom: MultiPoint, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.MultiPoint, bigEndian);
-        WkbUtils._writeInt32(writer, geom.children.length, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.MultiPoint, bigEndian);
+        WKBUtils._writeInt32(writer, geom.children.length, bigEndian);
         geom.children.forEach(p => {
-            WkbUtils._writePoint(writer, p, bigEndian);
+            WKBUtils._writePoint(writer, p, bigEndian);
         });
     }
 
     static _readMultiPoint(reader: BufferReader, bigEndian: boolean) {
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
 
         const multiPoint = new MultiPoint();
         for (let i = 0; i < count; i++) {
-            const currentBigEndian = WkbUtils._readByteEndian(reader);
-            const currentGeomType = WkbUtils._readGeomType(reader, currentBigEndian);
+            const currentBigEndian = WKBUtils._readByteEndian(reader);
+            const currentGeomType = WKBUtils._readGeomType(reader, currentBigEndian);
             assert(currentGeomType === GeometryType.Point, 'Non-Point in MultiPoint.')
 
-            const currentCoordinate = WkbUtils._readCoordinate(reader, currentBigEndian);
+            const currentCoordinate = WKBUtils._readCoordinate(reader, currentBigEndian);
             multiPoint.children.push(new Point(currentCoordinate.x, currentCoordinate.y));
         }
 
         return multiPoint;
     }
 
-    static _polygonToWkb(geom: Polygon, bigEndian = false): Buffer {
-        const buff = Buffer.alloc(WkbUtils._sizeOfPolygon(geom));
+    static _polygonToWKB(geom: Polygon, bigEndian = false): Buffer {
+        const buff = Buffer.alloc(WKBUtils._sizeOfPolygon(geom));
         const writer = new BufferWriter(buff);
-        WkbUtils._writePolygon(writer, geom, bigEndian);
+        WKBUtils._writePolygon(writer, geom, bigEndian);
         return buff;
     }
 
@@ -292,31 +292,31 @@ export default class WkbUtils {
     }
 
     static _writePolygon(writer: BufferWriter, geom: Polygon, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.Polygon, bigEndian);
-        WkbUtils._writeInt32(writer, geom.internalRings.length + 1, bigEndian);
-        WkbUtils._writeCoordinates(writer, geom.externalRing._coordinates, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.Polygon, bigEndian);
+        WKBUtils._writeInt32(writer, geom.internalRings.length + 1, bigEndian);
+        WKBUtils._writeCoordinates(writer, geom.externalRing._coordinates, bigEndian);
         geom.internalRings.forEach(r => {
-            WkbUtils._writeCoordinates(writer, r._coordinates, bigEndian);
+            WKBUtils._writeCoordinates(writer, r._coordinates, bigEndian);
         });
     }
 
     static _readPolygon(reader: BufferReader, bigEndian: boolean) {
-        const ringCount = WkbUtils._readInt32(reader, bigEndian);
-        let coordinates = WkbUtils._readCoordinates(reader, bigEndian);
+        const ringCount = WKBUtils._readInt32(reader, bigEndian);
+        let coordinates = WKBUtils._readCoordinates(reader, bigEndian);
         const polygon = new Polygon(new LinearRing(coordinates));
         for (let i = 1; i < ringCount; i++) {
-            coordinates = WkbUtils._readCoordinates(reader, bigEndian);
+            coordinates = WKBUtils._readCoordinates(reader, bigEndian);
             polygon.internalRings.push(new LinearRing(coordinates));
         }
 
         return polygon;
     }
 
-    static _pointToWkb(point: Point, bigEndian = false): Buffer {
-        const buff = Buffer.alloc(WkbUtils._sizeOfPoint());
+    static _pointToWKB(point: Point, bigEndian = false): Buffer {
+        const buff = Buffer.alloc(WKBUtils._sizeOfPoint());
         const writer = new BufferWriter(buff);
-        WkbUtils._writePoint(writer, point, bigEndian);
+        WKBUtils._writePoint(writer, point, bigEndian);
         return buff;
     }
 
@@ -326,21 +326,21 @@ export default class WkbUtils {
     }
 
     static _writePoint(writer: BufferWriter, geom: Point, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.Point, bigEndian);
-        WkbUtils._writeCoordinate(writer, geom, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.Point, bigEndian);
+        WKBUtils._writeCoordinate(writer, geom, bigEndian);
     }
 
     static _readPoint(reader: BufferReader, bigEndian: boolean) {
-        const x = WkbUtils._readDouble(reader, bigEndian);
-        const y = WkbUtils._readDouble(reader, bigEndian);
+        const x = WKBUtils._readDouble(reader, bigEndian);
+        const y = WKBUtils._readDouble(reader, bigEndian);
         return new Point(x, y);
     }
 
-    static _lineToWkb(line: LineString, bigEndian = false): Buffer {
-        const buff = Buffer.alloc(WkbUtils._sizeOfLine(line));
+    static _lineToWKB(line: LineString, bigEndian = false): Buffer {
+        const buff = Buffer.alloc(WKBUtils._sizeOfLine(line));
         const writer = new BufferWriter(buff);
-        WkbUtils._writeLine(writer, line, bigEndian);
+        WKBUtils._writeLine(writer, line, bigEndian);
 
         return buff;
     }
@@ -353,34 +353,34 @@ export default class WkbUtils {
     }
 
     static _writeLine(writer: BufferWriter, geom: LineString, bigEndian: boolean) {
-        WkbUtils._writeByteEndian(writer, bigEndian);
-        WkbUtils._writeGeomType(writer, GeometryType.LineString, bigEndian);
-        WkbUtils._writeCoordinates(writer, geom._coordinates, bigEndian);
+        WKBUtils._writeByteEndian(writer, bigEndian);
+        WKBUtils._writeGeomType(writer, GeometryType.LineString, bigEndian);
+        WKBUtils._writeCoordinates(writer, geom._coordinates, bigEndian);
     }
 
     static _readLine(reader: BufferReader, bigEndian: boolean) {
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
 
         const line = new LineString();
         for (let i = 0; i < count; i++) {
-            line._coordinates.push(WkbUtils._readCoordinate(reader, bigEndian));
+            line._coordinates.push(WKBUtils._readCoordinate(reader, bigEndian));
         }
 
         return line;
     }
 
     static _writeCoordinates(writer: BufferWriter, coordinates: ICoordinate[], bigEndian: boolean) {
-        WkbUtils._writeInt32(writer, coordinates.length, bigEndian);
+        WKBUtils._writeInt32(writer, coordinates.length, bigEndian);
         coordinates.forEach(c => {
-            WkbUtils._writeCoordinate(writer, c, bigEndian);
+            WKBUtils._writeCoordinate(writer, c, bigEndian);
         });
     }
 
     static _readCoordinates(reader: BufferReader, bigEndian: boolean) {
-        const count = WkbUtils._readInt32(reader, bigEndian);
+        const count = WKBUtils._readInt32(reader, bigEndian);
         const coordinates: ICoordinate[] = [];
         for (let i = 0; i < count; i++) {
-            const coordinate = WkbUtils._readCoordinate(reader, bigEndian);
+            const coordinate = WKBUtils._readCoordinate(reader, bigEndian);
             coordinates.push(coordinate);
         }
 

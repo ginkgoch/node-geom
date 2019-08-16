@@ -41,7 +41,7 @@ describe('MultiLineString', () => {
     it('json', () => {
         let geom = new MultiLineString();
 
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'MultiLineString');
 
         let geom2 = GeometryFactory.create(json);
@@ -59,7 +59,7 @@ describe('MultiLineString', () => {
         ]);
 
         const ml = new MultiLineString([line1, line2]);
-        const wkt = ml.wkt();
+        const wkt = ml.toWKT();
         expect(wkt).toEqual('MULTILINESTRING((1 2,10.9 -2.88),(-1 20,-10.9 -2.88))');
     });
 

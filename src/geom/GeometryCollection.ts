@@ -23,10 +23,10 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
         return this._geometries;
     }
 
-    json(): IGeoJson {
+    toJSON(): IGeoJson {
         return {
             type: this.type,
-            geometries: this._geometries.map(g => g.json())
+            geometries: this._geometries.map(g => g.toJSON())
         }
     }
 

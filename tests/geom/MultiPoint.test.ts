@@ -56,7 +56,7 @@ describe('MultiPoint', () => {
 
     it('json', () => {
         let geom = new MultiPoint();
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'MultiPoint');
 
         let geom2 = GeometryFactory.create(json);
@@ -71,7 +71,7 @@ describe('MultiPoint', () => {
             new Point(25, 0),
         ]);
 
-        const wkt = mp.wkt();
+        const wkt = mp.toWKT();
         expect(wkt).toEqual('MULTIPOINT((0 0),(25 25),(0 25),(25 0))');
     });
 

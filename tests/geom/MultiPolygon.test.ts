@@ -25,7 +25,7 @@ describe('MultiPolygon', () => {
     it('json', () => {
         let geom = new MultiPolygon();
 
-        let json = geom.json();
+        let json = geom.toJSON();
         Utils.validateJsonResult(json, 'MultiPolygon');
 
         let geom2 = GeometryFactory.create(json);
@@ -38,7 +38,7 @@ describe('MultiPolygon', () => {
             new Polygon(new LinearRing([{ x: 10, y: 10 }, { x: 130, y: 10 }, { x: 130, y: 130 }, { x: 10, y: 10 }]))
         ]);
 
-        const wkt = mp.wkt();
+        const wkt = mp.toWKT();
         expect(wkt).toEqual('MULTIPOLYGON(((0 0,30 0,30 30,0 0)),((10 10,130 10,130 130,10 10)))');
     });
 
