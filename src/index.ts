@@ -19,6 +19,8 @@ import ICoordinate from "./base/ICoordinate";
 import IEnvelope from "./base/IEnvelope";
 import IGeoJSON from "./base/IGeoJSON";
 
+export * from './spatials';
+
 export {
     Envelope,
     Geometry,
