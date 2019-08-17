@@ -95,4 +95,17 @@ export default class Feature implements IFeature {
             return new Feature(geom, json.properties, json.id);
         }
     }
+
+    static parseJSON(json: IGeoJson) {
+        if (json.type !== Constants.TYPE_FEATURE) {
+            throw new Error('Not a feature json.');
+        }
+
+        if (json.geometry === undefined) {
+            throw new Error('Invalid feature json.');
+        }
+
+        const geom = GeometryFactory.create(json.geometry);
+        return new Feature(geom, json.properties, json.id);
+    }
 }
