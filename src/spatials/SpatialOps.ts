@@ -2,7 +2,7 @@ import { Geometry, GeometryFactory } from "..";
 import { BufferCaps } from "./BufferCaps";
 
 export class SpatialOps {
-    static buffer(geom: Geometry, distance: number, quadrantSegments = 8, endCapStyle: BufferCaps) {
+    static buffer(geom: Geometry, distance: number, quadrantSegments = 8, endCapStyle: BufferCaps = BufferCaps.default) {
         const tsGeom = geom._ts();
         const tsResult = tsGeom.buffer(distance, quadrantSegments, endCapStyle);
         return GeometryFactory.create(tsResult);

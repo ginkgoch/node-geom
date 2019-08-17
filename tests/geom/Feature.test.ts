@@ -109,4 +109,15 @@ describe('Feature', () => {
         const feature3 = Feature.create(f);
         expect(feature3).toEqual(feature1);
     });
+
+    it('parseJSON', () => {
+        const geom = new Point(23, 34);
+        const props = { name: 'Samuel', age: 35 };
+        const id = 78;
+        const feature1 = new Feature(geom, props, id);
+        const json1 = feature1.toJSON();
+
+        const feature2 = Feature.parseJSON(json1);
+        expect(feature2).toEqual(feature1);
+    });
 });
