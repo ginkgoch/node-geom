@@ -8,3 +8,15 @@ yarn add ginkgoch-geom
 
 ## Docs
 Visit [https://ginkgoch.github.io/node-geom](https://ginkgoch.github.io/node-geom) for detail.
+
+## Demo
+<script src="https://embed.runkit.com" data-element-id="my-element"></script>
+
+<!-- anywhere else on your page -->
+<div id="my-element">
+    const geom = require("ginkgoch-geom")
+    const point = new geom.Point(-119.698189, 34.420830);
+    point.toJSON();
+</div>
+
+Full demo, please try on RunKit at: https://runkit.com/ginkgoch/geometry-demo
