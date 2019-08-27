@@ -166,4 +166,24 @@ export default class Envelope implements IEnvelope {
     static init(): Envelope {
         return new Envelope(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY, Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);
     }
+
+    static overlaps(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
+        if (envelope1 === undefined || envelope2 === undefined) {
+            return false;
+        }
+
+        if (((envelope1.minx >= envelope2.minx && envelope1.minx <= envelope2.maxx) 
+            || (envelope1.maxx >= envelope2.minx && envelope1.maxx <= envelope2.maxx)
+            || (envelope2.minx >= envelope1.minx && envelope2.minx <= envelope1.maxx)
+            || (envelope2.maxx >= envelope1.minx && envelope2.maxx <= envelope1.maxx))
+            && 
+            ((envelope1.miny >= envelope2.miny && envelope1.miny <= envelope2.maxy)
+            || (envelope1.maxy >= envelope2.miny && envelope1.maxy <= envelope2.maxy)
+            || (envelope2.miny >= envelope1.miny && envelope2.miny <= envelope1.maxy)
+            || (envelope2.maxy >= envelope1.miny && envelope2.maxy <= envelope1.maxy))) {
+                return true;
+        }
+
+        return false;
+    }
 }
