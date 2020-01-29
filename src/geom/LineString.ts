@@ -48,4 +48,21 @@ export default class LineString extends Geometry {
     static _from(line: jsts.geom.LineString): LineString {
         return new LineString(line.getCoordinates().map(c => ({ x: c.x, y: c.y })));
     }
+
+    static fromNumbers(...numbers: number[]) {
+        let line = new LineString();
+        for (let i = 0; i < numbers.length - 1; i += 2) {
+            line._coordinates.push({ x: numbers[i], y: numbers[i + 1] });
+        }
+
+        return line;
+    }
+
+    static fromPoints(...points: ICoordinate[]) {
+        let line = new LineString();
+        for (let p of points) {
+            line._coordinates.push(p);
+        }
+        return line;
+    }
 }

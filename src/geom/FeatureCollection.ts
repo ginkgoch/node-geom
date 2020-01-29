@@ -29,7 +29,24 @@ export default class FeatureCollection {
         };
     }
 
+    /**
+     * 
+     * @deprecated This method is deprecated. Please use parseJSON() instead.
+     */
     static create(json: IGeoJSON): FeatureCollection {
+        if (json.type !== Constants.TYPE_FEATURE_COLLECTION) {
+            throw new Error('Not a FeatureCollection json.');
+        }
+
+        if (json.features === undefined) {
+            throw new Error('Invalid FeatureCollection json.')
+        }
+
+        const features = json.features.map(f => Feature.create(f));
+        return new FeatureCollection(features, json.id);
+    }
+
+    static parseJSON(json: IGeoJSON): FeatureCollection {
         if (json.type !== Constants.TYPE_FEATURE_COLLECTION) {
             throw new Error('Not a FeatureCollection json.');
         }

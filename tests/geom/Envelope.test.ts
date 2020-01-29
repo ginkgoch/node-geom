@@ -73,4 +73,15 @@ describe('envelope helper test', () => {
         expect(envelope1.width).toBe(360);
         expect(envelope1.height).toBe(180);
     });
+
+    it('overlaps', () => {
+        let envelope1 = { minx: 0, miny: 0, maxx: 20, maxy: 20 };
+        let envelope2 = { minx: 10, miny: 10, maxx: 30, maxy: 30 };
+        let overlaps = Envelope.overlaps(envelope1, envelope2);
+        expect(overlaps).toBeTruthy();
+
+        envelope2 = { minx: 21, miny: 10, maxx: 30, maxy: 30 };
+        overlaps = Envelope.overlaps(envelope1, envelope2);
+        expect(overlaps).toBeFalsy();
+    });
 });
