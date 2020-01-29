@@ -4,6 +4,7 @@
         "jsts",
         "maxx",
         "maxy",
-        "miny"
+        "miny",
+        "spatials"
     ]
 }
