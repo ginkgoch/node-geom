@@ -1,6 +1,6 @@
 import IFeature from "../base/IFeature";
 import Constants from "../shared/Constants";
-import { Geometry, IGeoJson, GeometryFactory } from "..";
+import { Geometry, IGeoJSON, GeometryFactory } from "..";
 
 export default class Feature implements IFeature {
     id: number = 0;
@@ -13,7 +13,7 @@ export default class Feature implements IFeature {
      * @param {Map<string, any>} properties The properties of this feature. Default is empty map.
      * @param id The id of this feature. Default id is the same as geometry's id.
      */
-    constructor(geom: Geometry | IGeoJson, properties?: Map<string, any> | any, id?: number) {
+    constructor(geom: Geometry | IGeoJSON, properties?: Map<string, any> | any, id?: number) {
         if (geom instanceof Geometry) {
             this.geometry = geom;
         } else {
@@ -76,13 +76,13 @@ export default class Feature implements IFeature {
     }
 
     static create(feature: IFeature): Feature
-    static create(json: IGeoJson): Feature
-    static create(param: IGeoJson | IFeature): Feature {
+    static create(json: IGeoJSON): Feature
+    static create(param: IGeoJSON | IFeature): Feature {
         if ('geometry' in param && param.geometry instanceof Geometry) {
             const feature = param as IFeature;
             return new Feature(feature.geometry, feature.properties, feature.id);
         } else {
-            const json = param as IGeoJson;
+            const json = param as IGeoJSON;
             if (json.type !== Constants.TYPE_FEATURE) {
                 throw new Error('Not a feature json.');
             }
@@ -96,7 +96,7 @@ export default class Feature implements IFeature {
         }
     }
 
-    static parseJSON(json: IGeoJson) {
+    static parseJSON(json: IGeoJSON) {
         if (json.type !== Constants.TYPE_FEATURE) {
             throw new Error('Not a feature json.');
         }
