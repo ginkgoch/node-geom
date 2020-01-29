@@ -2,6 +2,7 @@ import Utils from "../shared/Utils";
 import LineString from "../../src/geom/LineString";
 import { GeometryType } from "../../src/geom/GeometryType";
 import GeometryFactory from "../../src/geom/GeometryFactory";
+import Point from "../../src/geom/Point";
 
 describe('LineString', () => {
     it('constructor', () => {
@@ -71,5 +72,22 @@ describe('LineString', () => {
         const wkt = 'LINESTRING(0 0,100 100)';
         const wkb = '0102000000020000000000000000000000000000000000000000000000000059400000000000005940';
         Utils.validateWkbAndWktAreEqual(wkt, wkb);
+    });
+
+    it('from number array', () => {
+        let line = LineString.fromNumbers(0, 0, 10, 10);
+        expect(line._coordinates.length).toBe(2);
+        expect(line._coordinates[0]).toEqual({ x: 0, y: 0 });
+        expect(line._coordinates[1]).toEqual({ x: 10, y: 10 });
+
+        line = LineString.fromNumbers(0, 0, 10, 10, 50);
+        expect(line._coordinates.length).toBe(2);
+        expect(line._coordinates[0]).toEqual({ x: 0, y: 0 });
+        expect(line._coordinates[1]).toEqual({ x: 10, y: 10 });
+    });
+
+    it('from number array', () => {
+        let line = LineString.fromPoints(new Point(0, 0), new Point(10, 10), new Point(5, 0));
+        expect(line._coordinates.length).toBe(3);
     });
 });

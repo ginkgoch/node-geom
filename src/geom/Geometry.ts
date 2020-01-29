@@ -52,6 +52,12 @@ export default abstract class Geometry {
         return tsGeom1.getLength();
     }
 
+    interiorPoint(): ICoordinate {
+        const tsGeom1 = this._ts();
+        const interiorPoint = tsGeom1.getInteriorPoint();
+        return { x: interiorPoint.getX(), y: interiorPoint.getY() };
+    }
+
     toJSON(): IGeoJSON {
         return {
             type: this.type,

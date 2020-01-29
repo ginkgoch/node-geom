@@ -39,8 +39,6 @@ export {
     FeatureCollection,
     ICoordinate,
     IEnvelope,
-    IGeoJSON as IGeoJson,
+    IGeoJSON,
     IFeature
-}
-
-export * from './spatials';
+};

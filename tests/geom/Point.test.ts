@@ -2,6 +2,7 @@ import Utils from "../shared/Utils";
 import Point from "../../src/geom/Point";
 import { GeometryType } from "../../src/geom/GeometryType";
 import GeometryFactory from "../../src/geom/GeometryFactory";
+import fs from 'fs';
 
 describe('Point', () => {
     it('constructor', () => {
@@ -75,5 +76,14 @@ describe('Point', () => {
         const p3 = GeometryFactory.create(wkb);
         const p4 = new Point(10, 10);
         expect(p3).toEqual(p4);
-    })
+    });
+
+    it('geocentricLine', () => {
+        const p1 = new Point(23.4, 45.6);
+        const line1 = p1.geocentricLine({x: 135, y: 78});
+        const wkt1 = line1!.toWKT();
+        const wkt2 = fs.readFileSync('./tests/data/geocentricLine.txt').toString();
+
+        expect(wkt1).toEqual(wkt2);
+    });
 });
