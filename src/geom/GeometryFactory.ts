@@ -9,9 +9,90 @@ import IGeoJSON from '../base/IGeoJSON';
 import WKBUtils from '../shared/WkbUtils';
 import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
-import { IEnvelope } from '..';
+import { IEnvelope, ICoordinate } from '..';
 
 export default class GeometryFactory {
+    static buildCircle(center: ICoordinate, radius: number, segments: number = 36): Polygon {
+        if (segments < 4) {
+            throw new Error('segments must be greater than 3.');
+        }
+
+        let angle = 2 * Math.PI / segments;
+        let coordinates = new Array<ICoordinate>();
+        for (let i = 0; i < segments; i++) {
+            let x = center.x + radius * Math.cos(angle * i);
+            let y = center.y - radius * Math.sin(angle * i);
+            coordinates.push({ x, y });
+        }
+
+        coordinates.push(coordinates[0]);
+
+        return new Polygon(new LinearRing(coordinates));
+    }
+
+    static buildEllipse(center: ICoordinate, radiusX: number, radiusY: number, segments: number = 36): Polygon {
+        if (segments < 4) {
+            throw new Error('segments must be greater than 3.');
+        }
+
+        let angle = 2 * Math.PI / segments;
+        let coordinates = new Array<ICoordinate>();
+        for (let i = 0; i < segments; i++) {
+            let x = center.x + radiusX * Math.cos(angle * i);
+            let y = center.y - radiusY * Math.sin(angle * i);
+            coordinates.push({ x, y });
+        }
+
+        coordinates.push(coordinates[0]);
+
+        return new Polygon(new LinearRing(coordinates));
+    }
+
+    static buildStar(center: ICoordinate, vertexCount: number, radiusLong: number, radiusShort?: number): Polygon {
+        if (vertexCount < 3) {
+            throw new Error('vertexCount must be larger than 2.')
+        }
+
+        radiusShort = radiusShort || radiusLong * .5;
+
+        let step = Math.PI / vertexCount;
+        let coordinates = new Array<ICoordinate>();
+        for (let i = 0; i < vertexCount * 2; i++) {
+            let radius = i % 2 === 0 ? radiusLong : radiusShort;
+            let x = center.x + radius * Math.cos(step * i);
+            let y = center.y - radius * Math.sin(step * i);
+            coordinates.push({ x, y });
+        }
+
+        coordinates.push(coordinates[0]);
+        return new Polygon(new LinearRing(coordinates));
+    }
+
+    static buildSquare(center: ICoordinate, sideLength: number): Polygon {
+        let sideLengthHalf = sideLength * 0.5;
+        let coordinates = new Array<ICoordinate>();
+        coordinates.push({ x: center.x + sideLengthHalf, y: center.y + sideLengthHalf });
+        coordinates.push({ x: center.x + sideLengthHalf, y: center.y - sideLengthHalf });
+        coordinates.push({ x: center.x - sideLengthHalf, y: center.y - sideLengthHalf });
+        coordinates.push({ x: center.x - sideLengthHalf, y: center.y + sideLengthHalf });
+        coordinates.push(coordinates[0]);
+
+        return new Polygon(new LinearRing(coordinates));
+    }
+
+    static buildRectangle(center: ICoordinate, width: number, height: number): Polygon {
+        let widthHalf = width * 0.5;
+        let heightHalf = height * 0.5;
+        let coordinates = new Array<ICoordinate>();
+        coordinates.push({ x: center.x + widthHalf, y: center.y + heightHalf });
+        coordinates.push({ x: center.x + widthHalf, y: center.y - heightHalf });
+        coordinates.push({ x: center.x - widthHalf, y: center.y - heightHalf });
+        coordinates.push({ x: center.x - widthHalf, y: center.y + heightHalf });
+        coordinates.push(coordinates[0]);
+        
+        return new Polygon(new LinearRing(coordinates));
+    }
+    
     /**
      * @deprecated Use envelopeAsPolygon(envelope: IEnvelope) instead.
      */
