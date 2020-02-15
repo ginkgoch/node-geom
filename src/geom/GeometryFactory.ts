@@ -25,8 +25,7 @@ export default class GeometryFactory {
             coordinates.push({ x, y });
         }
 
-        coordinates.push(coordinates[0]);
-
+        coordinates.push({ x: coordinates[0].x, y: coordinates[0].y });
         return new Polygon(new LinearRing(coordinates));
     }
 
@@ -43,8 +42,7 @@ export default class GeometryFactory {
             coordinates.push({ x, y });
         }
 
-        coordinates.push(coordinates[0]);
-
+        coordinates.push({ x: coordinates[0].x, y: coordinates[0].y });
         return new Polygon(new LinearRing(coordinates));
     }
 
@@ -64,7 +62,7 @@ export default class GeometryFactory {
             coordinates.push({ x, y });
         }
 
-        coordinates.push(coordinates[0]);
+        coordinates.push({ x: coordinates[0].x, y: coordinates[0].y });
         return new Polygon(new LinearRing(coordinates));
     }
 
@@ -75,7 +73,7 @@ export default class GeometryFactory {
         coordinates.push({ x: center.x + sideLengthHalf, y: center.y - sideLengthHalf });
         coordinates.push({ x: center.x - sideLengthHalf, y: center.y - sideLengthHalf });
         coordinates.push({ x: center.x - sideLengthHalf, y: center.y + sideLengthHalf });
-        coordinates.push(coordinates[0]);
+        coordinates.push({ x: coordinates[0].x, y: coordinates[0].y });
 
         return new Polygon(new LinearRing(coordinates));
     }
@@ -88,11 +86,11 @@ export default class GeometryFactory {
         coordinates.push({ x: center.x + widthHalf, y: center.y - heightHalf });
         coordinates.push({ x: center.x - widthHalf, y: center.y - heightHalf });
         coordinates.push({ x: center.x - widthHalf, y: center.y + heightHalf });
-        coordinates.push(coordinates[0]);
-        
+        coordinates.push({ x: coordinates[0].x, y: coordinates[0].y });
+
         return new Polygon(new LinearRing(coordinates));
     }
-    
+
     /**
      * @deprecated Use envelopeAsPolygon(envelope: IEnvelope) instead.
      */
