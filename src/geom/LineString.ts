@@ -45,6 +45,10 @@ export default class LineString extends Geometry {
         return new LineString(tmpCoordinates);
     }
 
+    forEachCoordinates(callback: (coordinate: ICoordinate) => void): void {
+        this._coordinates.forEach(callback);
+    }
+
     static _from(line: jsts.geom.LineString): LineString {
         return new LineString(line.getCoordinates().map(c => ({ x: c.x, y: c.y })));
     }

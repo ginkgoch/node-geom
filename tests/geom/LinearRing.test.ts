@@ -4,6 +4,7 @@ import LinearRing from "../../src/geom/LinearRing";
 import Envelope from "../../src/geom/Envelope";
 import { GeometryType } from "../../src/geom/GeometryType";
 import GeometryFactory from "../../src/geom/GeometryFactory";
+import { ICoordinate } from "../../src";
 
 describe('LinearRing', () => {
     it('constructor', () => {
@@ -114,5 +115,21 @@ describe('LinearRing', () => {
         const ring = new LinearRing([v1, v2, v3, v4]);
         const wkt = ring.toWKT();
         expect(wkt).toEqual('LINEARRING(1.2 4.5,2 3.99,22 32.111,43.4 78.222,1.2 4.5)');
+    });
+
+    it('move', () => {
+        const [v1, v2, v3, v4] = [
+            {x: 1.2, y: 4.5},
+            {x: 2, y: 3.99},
+            {x: 22, y: 32.111},
+            {x: 43.4, y: 78.222}
+        ];
+        
+        let coordinates: Array<ICoordinate> = [v1, v2, v3, v4];
+        const ring1 = new LinearRing(_.cloneDeep(coordinates));
+        ring1.move(20, 10);
+        const ring2 = new LinearRing(coordinates.map(v => ({ x: v.x + 20.0, y: v.y + 10.0 })));
+
+        expect(ring1).toEqual(ring2);
     });
 });

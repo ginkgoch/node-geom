@@ -31,6 +31,10 @@ export default class Point extends Geometry {
         return [this.x, this.y];
     }
 
+    forEachCoordinates(callback: (coordinate: ICoordinate) => void): void {
+        callback(this);
+    }
+
     geocentricLine(point: ICoordinate, segmentCount: number = 300): MultiLineString | undefined {
         const ddEnvelope = new Envelope(-180, -90, 180, 90);
         const targetPoint = new Point(point.x, point.y);

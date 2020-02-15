@@ -87,6 +87,33 @@ export default abstract class Geometry {
         return WkbUtils.geomToWKB(this, bigEndian);
     }
 
+    abstract forEachCoordinates(callback: (coordinate: ICoordinate) => void): void;
+
+    move(offsetX: number, offsetY: number) {
+        this.forEachCoordinates(c => {
+            c.x += offsetX;
+            c.y += offsetY;
+        });
+    }
+
+    rotate(angle: number, origin?: ICoordinate) {
+        if (origin === undefined) {
+            origin = this.centroid();
+        }
+
+        this.forEachCoordinates(c => {
+            let radius = Math.sqrt(Math.pow(c.x - origin!.x, 2) + Math.pow(c.y - origin!.y, 2));
+            if (radius === 0) {
+                return;
+            }
+
+            let currentAngle = Math.atan2(c.y - origin!.y, c.x - origin!.x);
+            let newAngle = currentAngle + angle;
+            c.x = origin!.x + Math.round(radius * Math.cos(newAngle) * 1e8) / 1e8;
+            c.y = origin!.y - Math.round(radius * Math.sin(newAngle) * 1e8) / 1e8;
+        });
+    }
+
     //#region 
     contains(geom: Geometry) {
         const tsGeom1 = this._ts();
