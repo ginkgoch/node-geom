@@ -43,6 +43,10 @@ export default class Polygon extends Geometry {
         return new Polygon(tmpRing, ...rings);
     }
 
+    forEachCoordinates(callback: (coordinate: ICoordinate) => void): void {
+        [this.externalRing].concat(this.internalRings).forEach(r => r.forEachCoordinates(callback));
+    }
+
     static _from(polygon: jsts.geom.Polygon): Polygon {
         const geom = new Polygon(
             LinearRing._from(polygon.getExteriorRing())

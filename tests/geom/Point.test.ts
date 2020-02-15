@@ -86,4 +86,10 @@ describe('Point', () => {
 
         expect(wkt1).toEqual(wkt2);
     });
+
+    it('move', () => {
+        const p1 = new Point(23.4, 45.6);
+        p1.move(20, 10);
+        expect(p1).toEqual(new Point(43.4, 55.6));
+    });
 });

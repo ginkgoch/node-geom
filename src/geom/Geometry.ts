@@ -87,6 +87,15 @@ export default abstract class Geometry {
         return WkbUtils.geomToWKB(this, bigEndian);
     }
 
+    abstract forEachCoordinates(callback: (coordinate: ICoordinate) => void): void;
+
+    move(offsetX: number, offsetY: number) {
+        this.forEachCoordinates(c => {
+            c.x += offsetX;
+            c.y += offsetY;
+        });
+    }
+
     //#region 
     contains(geom: Geometry) {
         const tsGeom1 = this._ts();

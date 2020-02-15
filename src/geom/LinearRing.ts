@@ -102,4 +102,8 @@ export default class LinearRing extends Geometry {
             return distance > 0;
         }
     }
+
+    forEachCoordinates(callback: (coordinate: ICoordinate) => void): void {
+        this._coordinates.forEach(callback);
+    }
 }
