@@ -84,9 +84,13 @@ describe('LineString', () => {
         expect(line._coordinates.length).toBe(2);
         expect(line._coordinates[0]).toEqual({ x: 0, y: 0 });
         expect(line._coordinates[1]).toEqual({ x: 10, y: 10 });
+
+        expect(() => {
+            LineString.fromNumbers(0, 0, 10)
+        }).toThrow(/coordinates must have at least/i);
     });
 
-    it('from number array', () => {
+    it('from points', () => {
         let line = LineString.fromPoints(new Point(0, 0), new Point(10, 10), new Point(5, 0));
         expect(line._coordinates.length).toBe(3);
     });

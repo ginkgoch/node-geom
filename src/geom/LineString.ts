@@ -3,6 +3,7 @@ import * as jsts from 'jsts';
 import Geometry from "./Geometry";
 import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
+import Validators from "../shared/Validators";
 
 export default class LineString extends Geometry {
     _coordinates: Array<ICoordinate>;
@@ -53,10 +54,12 @@ export default class LineString extends Geometry {
         return new LineString(line.getCoordinates().map(c => ({ x: c.x, y: c.y })));
     }
 
-    static fromNumbers(...numbers: number[]) {
+    static fromNumbers(...coordinates: number[]) {
+        Validators.validateCoordinateNumbers(coordinates, 4);
+
         let line = new LineString();
-        for (let i = 0; i < numbers.length - 1; i += 2) {
-            line._coordinates.push({ x: numbers[i], y: numbers[i + 1] });
+        for (let i = 0; i < coordinates.length - 1; i += 2) {
+            line._coordinates.push({ x: coordinates[i], y: coordinates[i + 1] });
         }
 
         return line;

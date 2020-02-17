@@ -5,6 +5,7 @@ import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 import Polygon from "./Polygon";
 import IGeoJSON from "../base/IGeoJSON";
+import Validators from "../shared/Validators";
 
 export default class LinearRing extends Geometry {
     _coordinates: ICoordinate[];
@@ -60,6 +61,12 @@ export default class LinearRing extends Geometry {
         });
 
         return new LinearRing(tmpCoordinate);
+    }
+
+    static fromNumbers(...coordinates: number[]): LinearRing {
+        Validators.validateCoordinateNumbers(coordinates, 6);
+        let ring = new LinearRing(_.chunk(coordinates, 2).map(c => ({x: c[0], y: c[1]})));
+        return ring;
     }
 
     static _from(ring: jsts.geom.LinearRing): LinearRing {

@@ -4,6 +4,7 @@ import Geometry from "./Geometry";
 import { GeometryType } from "./GeometryType";
 import ICoordinate from "../base/ICoordinate";
 import { MultiLineString, Envelope, LineString } from "..";
+import Validators from "../shared/Validators";
 
 const radianFactor = Math.PI / 180.0;
 const degreeFactor = 180.0 / Math.PI;
@@ -104,6 +105,12 @@ export default class Point extends Geometry {
     _ts(): jsts.geom.Geometry {
         const coordinate = new jsts.geom.Coordinate(this.x, this.y);
         return Geometry._factory.createPoint(coordinate);
+    }
+
+    static fromNumbers(...coordinates: number[]): Point {
+        Validators.validateCoordinateNumbers(coordinates, 2);
+        
+        return new Point(coordinates[0], coordinates[1]);
     }
 
     protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {

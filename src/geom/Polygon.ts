@@ -4,6 +4,7 @@ import LinearRing from "./LinearRing";
 import Geometry from "./Geometry";
 import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
+import Validators from "../shared/Validators";
 
 export default class Polygon extends Geometry {
     externalRing: LinearRing;
@@ -45,6 +46,18 @@ export default class Polygon extends Geometry {
 
     forEachCoordinates(callback: (coordinate: ICoordinate) => void): void {
         [this.externalRing].concat(this.internalRings).forEach(r => r.forEachCoordinates(callback));
+    }
+
+    static fromNumbers(...coordinates: number[][]): Polygon {
+        Validators.validateCoordinateNumbers(coordinates, 1);
+
+        let rings = coordinates.map(cs => LinearRing.fromNumbers(...cs));
+        let polygon = new Polygon(rings[0]);
+        for (let i = 1; i < rings.length; i++) {
+            polygon.internalRings.push(rings[i]);
+        }
+
+        return polygon;
     }
 
     static _from(polygon: jsts.geom.Polygon): Polygon {

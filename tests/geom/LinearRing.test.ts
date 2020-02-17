@@ -132,4 +132,14 @@ describe('LinearRing', () => {
 
         expect(ring1).toEqual(ring2);
     });
+
+    it('from numbers', () => {
+        let ring = LinearRing.fromNumbers(1.2, 4.5, 2, 3.99, 22, 32.111, 43.4, 78.222);
+        const wkt = ring.toWKT();
+        expect(wkt).toEqual('LINEARRING(1.2 4.5,2 3.99,22 32.111,43.4 78.222,1.2 4.5)');
+
+        expect(() => {
+            LinearRing.fromNumbers(1.2, 4.5, 2, 3.99)
+        }).toThrow(/coordinates must have at least/i);
+    });
 });

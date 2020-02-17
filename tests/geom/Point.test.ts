@@ -68,7 +68,7 @@ describe('Point', () => {
     it('wkb', () => {
         const p1 = new Point(23.4, 45.6);
         let wkb = p1.toWKB();
-        
+
         const p2 = GeometryFactory.create(wkb);
         expect(p2).toEqual(p1);
 
@@ -80,7 +80,7 @@ describe('Point', () => {
 
     it('geocentricLine', () => {
         const p1 = new Point(23.4, 45.6);
-        const line1 = p1.geocentricLine({x: 135, y: 78});
+        const line1 = p1.geocentricLine({ x: 135, y: 78 });
         const wkt1 = line1!.toWKT();
         const wkt2 = fs.readFileSync('./tests/data/geocentricLine.txt').toString();
 
@@ -100,5 +100,14 @@ describe('Point', () => {
 
         p1.rotate(Math.PI, { x: 0, y: 0 })
         expect(p1).toEqual(new Point(-10, 0));
+    });
+
+    it('fromCoordinates', () => {
+        let p1 = Point.fromNumbers(20, 40);
+        expect(p1).toEqual(new Point(20, 40));
+
+        expect(() => {
+            Point.fromNumbers(20)
+        }).toThrow(/coordinates must have at least/i)
     });
 });
