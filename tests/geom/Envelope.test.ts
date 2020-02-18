@@ -16,9 +16,9 @@ describe('envelope helper test', () => {
         env2 = { minx: -5, miny: 0, maxx: 5, maxy: 10 };
         expect(Envelope.disjoined(env1, env2)).toBeFalsy();
 
-        expect(Envelope.disjoined(env1, undefined)).toBeFalsy();
+        expect(Envelope.disjoined(env1, undefined)).toBeTruthy();
         
-        expect(Envelope.disjoined(undefined, undefined)).toBeFalsy();
+        expect(Envelope.disjoined(undefined, undefined)).toBeTruthy();
     });
 
     test('equals', () => {
@@ -84,4 +84,21 @@ describe('envelope helper test', () => {
         overlaps = Envelope.overlaps(envelope1, envelope2);
         expect(overlaps).toBeFalsy();
     });
+
+    it('intersection', () => {
+        let envelope1 = { minx: 0, miny: 0, maxx: 20, maxy: 20 };
+        let envelope2 = { minx: 10, miny: 10, maxx: 30, maxy: 30 };
+
+        let result = Envelope.intersection(undefined, undefined);
+        expect(result).toBeUndefined();
+
+        result = Envelope.intersection(undefined, envelope2);
+        expect(result).toBeUndefined();
+
+        result = Envelope.intersection(envelope1, undefined);
+        expect(result).toBeUndefined();
+
+        result = Envelope.intersection(envelope1, envelope2);
+        expect(result).toEqual(new Envelope(10, 10, 20, 20));
+    })
 });

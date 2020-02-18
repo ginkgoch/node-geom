@@ -92,6 +92,18 @@ export default class Envelope implements IEnvelope {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
+    static intersection(env1: IEnvelope | undefined, env2: IEnvelope | undefined): Envelope | undefined {
+        if (Envelope.disjoined(env1, env2)) {
+            return undefined;
+        }
+
+        let minx = Math.max(env1!.minx, env2!.minx);
+        let maxx = Math.min(env1!.maxx, env2!.maxx);
+        let miny = Math.max(env1!.miny, env2!.miny);
+        let maxy = Math.min(env1!.maxy, env2!.maxy);
+        return new Envelope(minx, miny, maxx, maxy);
+    }
+
     static unionAll(envelopes: IEnvelope[]): Envelope {
         let envelope = Envelope.init();
         envelopes.forEach(e => envelope.expand(e));
@@ -100,7 +112,7 @@ export default class Envelope implements IEnvelope {
     }
 
     static disjoined(envelope1: IEnvelope | undefined, envelope2: IEnvelope | undefined): boolean {
-        if (envelope1 === undefined || envelope2 === undefined) return false;
+        if (envelope1 === undefined || envelope2 === undefined) return true;
 
         return envelope1.maxx < envelope2.minx || envelope1.minx > envelope2.maxx
             || envelope1.miny > envelope2.maxy || envelope1.maxy < envelope2.miny;
