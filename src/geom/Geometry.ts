@@ -136,7 +136,7 @@ export default abstract class Geometry {
     disjoint(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
-        return tsGeom1.disjoint(tsGeom2);
+        return !tsGeom1.intersects(tsGeom2);
     }
 
     distance(geom: Geometry) {
