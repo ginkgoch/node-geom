@@ -4,44 +4,29 @@ import IGeoJSON from "../base/IGeoJSON";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
-/**
- * @category geom
- */
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
 
-    /**
-     * The id of geometry.
-     */
+    /** The id of geometry. */
     id: number = 0;
 
-    /**
-     * Gets the geometry type.
-     */
+    /** Gets the geometry type. */
     get type(): GeometryType {
         return GeometryType.Unknown;
     }
 
-    /**
-     * Gets a flatten coordinates array.
-     */
+    /** Gets a flatten coordinates array. */
     abstract coordinatesFlat(): Array<ICoordinate>;
 
-    /**
-     * Gets the coordinates array.
-     */
+    /** Gets the coordinates array. */
     abstract coordinates(): any;
 
-    /**
-     * Gets the centroid of this geometry.
-     */
+    /** Gets the centroid of this geometry. */
     centroid(): ICoordinate {
         return this.envelope().centroid();
     }
 
-    /**
-     * Gets the envelope of this geometry.
-     */
+    /** Gets the envelope of this geometry. */
     envelope(): Envelope {
         const coordinates = this.coordinatesFlat()
         let [minx, miny, maxx, maxy] = [
@@ -60,9 +45,7 @@ export default abstract class Geometry {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
-    /**
-     * Gets the area of this geometry.
-     */
+    /** Gets the area of this geometry. */
     area() {
         const tsGeom1 = this._ts();
         return tsGeom1.getArea();
