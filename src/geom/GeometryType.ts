@@ -1,3 +1,4 @@
+/** @category Geometries */
 export enum GeometryType {
     Unknown = 'Unknown',
     Point = 'Point',

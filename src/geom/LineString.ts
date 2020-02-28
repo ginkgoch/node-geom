@@ -5,6 +5,7 @@ import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 import Validators from "../shared/Validators";
 
+/** @category Geometries */
 export default class LineString extends Geometry {
     _coordinates: Array<ICoordinate>;
 

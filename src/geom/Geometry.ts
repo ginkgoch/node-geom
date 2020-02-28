@@ -4,6 +4,10 @@ import IGeoJSON from "../base/IGeoJSON";
 import { GeometryType } from "./GeometryType"
 import ICoordinate from "../base/ICoordinate"
 
+/** 
+ * The base class of all geometries. 
+ * @category Geometries
+ */
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
 

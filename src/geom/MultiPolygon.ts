@@ -6,6 +6,7 @@ import { GeometryType } from "./GeometryType";
 import GeometryCollectionBase from "./GeometryCollectionBase";
 import ICoordinate from "../base/ICoordinate";
 
+/** @category Geometries */
 export default class MultiPolygon extends GeometryCollectionBase<Polygon> {
     constructor(polygon?: Polygon[]) {
         super(polygon);

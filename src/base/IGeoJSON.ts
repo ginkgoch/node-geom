@@ -1,3 +1,4 @@
+/** @category BaseTypes */
 export default interface IGeoJSON {
     type: string,
     id?: number,

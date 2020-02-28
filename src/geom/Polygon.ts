@@ -6,6 +6,7 @@ import ICoordinate from "../base/ICoordinate";
 import { GeometryType } from "./GeometryType";
 import Validators from "../shared/Validators";
 
+/** @category Geometries */
 export default class Polygon extends Geometry {
     externalRing: LinearRing;
     internalRings: Array<LinearRing>;

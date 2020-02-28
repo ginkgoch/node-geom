@@ -9,6 +9,7 @@ import Validators from "../shared/Validators";
 const radianFactor = Math.PI / 180.0;
 const degreeFactor = 180.0 / Math.PI;
 
+/** @category Geometries */
 export default class Point extends Geometry {
     x: number = 0
     y: number = 0

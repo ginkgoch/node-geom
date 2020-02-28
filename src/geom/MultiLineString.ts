@@ -5,6 +5,7 @@ import { GeometryType } from "./GeometryType";
 import Geometry from "./Geometry";
 import ICoordinate from "../base/ICoordinate";
 
+/** @category Geometries */
 export default class MultiLineString extends GeometryCollectionBase<LineString> {
     constructor(lines?: LineString[]) {
         super(lines);

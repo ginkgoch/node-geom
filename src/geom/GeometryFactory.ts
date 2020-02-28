@@ -11,6 +11,7 @@ import MultiLineString from "./MultiLineString";
 import GeometryCollection from "./GeometryCollection";
 import { IEnvelope, ICoordinate } from '..';
 
+/** @category Geometries */
 export default class GeometryFactory {
     static buildCircle(center: ICoordinate, radius: number, segments: number = 36): Polygon {
         if (segments < 4) {

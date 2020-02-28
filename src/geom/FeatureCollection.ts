@@ -4,6 +4,7 @@ import Constants from "../shared/Constants";
 import IGeoJSON from "../base/IGeoJSON";
 import { IFeature } from "..";
 
+/** @category Features */
 export default class FeatureCollection {
     id = 0
     features = new Array<Feature>();

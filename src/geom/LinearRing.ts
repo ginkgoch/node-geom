@@ -7,6 +7,7 @@ import Polygon from "./Polygon";
 import IGeoJSON from "../base/IGeoJSON";
 import Validators from "../shared/Validators";
 
+/** @category Geometries */
 export default class LinearRing extends Geometry {
     _coordinates: ICoordinate[];
 

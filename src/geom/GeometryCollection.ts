@@ -5,16 +5,13 @@ import GeometryFactory from "./GeometryFactory";
 import IGeoJSON from "../base/IGeoJSON";
 import ICoordinate from "../base/ICoordinate";
 
-/**
- * @category geom
- * @class
- * @description This class represents the GeometryCollection geometry.
- */
+/** @category Geometries */
 export default class GeometryCollection extends GeometryCollectionBase<Geometry> {
     constructor(geometries?: Geometry[]) {
         super(geometries);
     }
 
+    /** @override */
     get type(): GeometryType {
         return GeometryType.GeometryCollection;
     }
@@ -23,6 +20,7 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
         return this._geometries;
     }
 
+    /** @override */
     toJSON(): IGeoJSON {
         return {
             type: this.type,
@@ -30,10 +28,12 @@ export default class GeometryCollection extends GeometryCollectionBase<Geometry>
         }
     }
 
+    /** @override */
     _ts(): jsts.geom.Geometry {
         return Geometry._factory.createGeometryCollection(this.children.map(l => l._ts()));
     }
 
+    /** @override */
     protected _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
         return new GeometryCollection(this._cloneChildren(convert));
     }

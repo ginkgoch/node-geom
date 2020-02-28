@@ -2,6 +2,7 @@ import _ from "lodash";
 import Geometry from "./Geometry";
 import ICoordinate from "../base/ICoordinate";
 
+/** @category Geometries */
 export default abstract class GeometryCollectionBase<T extends Geometry> extends Geometry {
     _geometries: Array<T>;
 
