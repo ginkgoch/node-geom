@@ -10,20 +10,38 @@ import ICoordinate from "../base/ICoordinate"
 export default abstract class Geometry {
     static _factory = new jsts.geom.GeometryFactory();
 
+    /**
+     * The id of geometry.
+     */
     id: number = 0;
 
+    /**
+     * Gets the geometry type.
+     */
     get type(): GeometryType {
         return GeometryType.Unknown;
     }
 
+    /**
+     * Gets a flatten coordinates array.
+     */
     abstract coordinatesFlat(): Array<ICoordinate>;
 
+    /**
+     * Gets the coordinates array.
+     */
     abstract coordinates(): any;
 
+    /**
+     * Gets the centroid of this geometry.
+     */
     centroid(): ICoordinate {
         return this.envelope().centroid();
     }
 
+    /**
+     * Gets the envelope of this geometry.
+     */
     envelope(): Envelope {
         const coordinates = this.coordinatesFlat()
         let [minx, miny, maxx, maxy] = [
@@ -42,22 +60,28 @@ export default abstract class Geometry {
         return new Envelope(minx, miny, maxx, maxy);
     }
 
+    /**
+     * Gets the area of this geometry.
+     */
     area() {
         const tsGeom1 = this._ts();
         return tsGeom1.getArea();
     }
 
+    /** Gets the perimeter of this geometry. */
     perimeter() {
         const tsGeom1 = this._ts();
         return tsGeom1.getLength();
     }
 
+    /** Gets the interior point of this geometry. */
     interiorPoint(): ICoordinate {
         const tsGeom1 = this._ts();
         const interiorPoint = tsGeom1.getInteriorPoint();
         return { x: interiorPoint.getX(), y: interiorPoint.getY() };
     }
 
+    /** Converts this geometry to GeoJSON format. */
     toJSON(): IGeoJSON {
         return {
             type: this.type,
@@ -67,6 +91,7 @@ export default abstract class Geometry {
 
     abstract _ts(): jsts.geom.Geometry;
 
+    /** Clones this geometry as a new one. */
     clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry {
         const geom = this._clone(convert);
         geom.id = this.id;
@@ -75,6 +100,7 @@ export default abstract class Geometry {
 
     protected abstract _clone(convert?: (coordinate: ICoordinate) => ICoordinate): Geometry;
 
+    /** Converts this geometry to WKT format. */
     toWKT(): string {
         const geomTS = this._ts();
         const writer = new jsts.io.WKTWriter();
@@ -82,13 +108,16 @@ export default abstract class Geometry {
         return wkt;
     }
 
+    /** Converts this geometry to WKB format. */
     toWKB(bigEndian = false): Buffer {
         const WkbUtils = require("../shared/WkbUtils").default;
         return WkbUtils.geomToWKB(this, bigEndian);
     }
 
+    /** Loops all coordinates in this geometry. */
     abstract forEachCoordinates(callback: (coordinate: ICoordinate) => void): void;
 
+    /** Move coordinates by the specified offset. */
     move(offsetX: number, offsetY: number) {
         this.forEachCoordinates(c => {
             c.x += offsetX;
@@ -96,6 +125,7 @@ export default abstract class Geometry {
         });
     }
 
+    /** Rotates this geometry by the specified angle and origin point. */
     rotate(angle: number, origin?: ICoordinate) {
         if (origin === undefined) {
             origin = this.centroid();
@@ -115,54 +145,63 @@ export default abstract class Geometry {
     }
 
     //#region 
+    /** Detects whether this geometry contains with the specified geometry. */
     contains(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.contains(tsGeom2);
     }
 
+    /** Detects whether this geometry covers with the specified geometry. */
     covers(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.covers(tsGeom2);
     }
 
+    /** Detects whether this geometry crosses with the specified geometry. */
     crosses(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.crosses(tsGeom2);
     }
 
+    /** Detects whether this geometry is disjoint with the specified geometry. */
     disjoint(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return !tsGeom1.intersects(tsGeom2);
     }
 
+    /** Calculates distance between this and the specified geometry. */
     distance(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.distance(tsGeom2);
     }
 
+    /** Detects whether this geometry intersects with the specified geometry. */
     intersects(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.intersects(tsGeom2);
     }
 
+    /** Detects whether this geometry overlaps on the specified geometry. */
     overlaps(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.overlaps(tsGeom2);
     }
 
+    /** Detects whether this geometry is within the specified geometry. */
     within(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
         return tsGeom1.within(tsGeom2);
     }
 
+    /** Detects whether this geometry touches on the specified geometry. */
     touches(geom: Geometry) {
         const tsGeom1 = this._ts();
         const tsGeom2 = geom._ts();
