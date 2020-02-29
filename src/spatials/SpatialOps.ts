@@ -1,6 +1,7 @@
 import { Geometry, GeometryFactory } from "..";
 import { BufferCaps } from "./BufferCaps";
 
+/** @category shared */
 export class SpatialOps {
     static buffer(geom: Geometry, distance: number, quadrantSegments = 8, endCapStyle: BufferCaps = BufferCaps.default) {
         const tsGeom = geom._ts();

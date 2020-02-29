@@ -2,7 +2,7 @@ import _ from "lodash";
 import IEnvelope from "../base/IEnvelope";
 import ICoordinate from "../base/ICoordinate";
 
-/** @category BaseTypes */
+/** @category shared */
 export default class Envelope implements IEnvelope {
     minx: number;
     miny: number;

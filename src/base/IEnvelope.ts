@@ -1,4 +1,4 @@
-/** @category BaseTypes */
+/** @category shared */
 export default interface IEnvelope {
     minx: number
     miny: number

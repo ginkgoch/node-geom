@@ -1,6 +1,6 @@
 import { Geometry } from "..";
 
-/** @category BaseTypes */
+/** @category shared */
 export default interface IFeature {
     id: number;
     geometry: Geometry;

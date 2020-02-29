@@ -1,4 +1,4 @@
-/** @category BaseTypes */
+/** @category shared */
 export default interface IGeoJSON {
     type: string,
     id?: number,

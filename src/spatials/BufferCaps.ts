@@ -1,3 +1,4 @@
+/** @category shared */
 export enum BufferCaps {
     default = 1,
     round = 1,

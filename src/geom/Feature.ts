@@ -2,7 +2,7 @@ import IFeature from "../base/IFeature";
 import Constants from "../shared/Constants";
 import { Geometry, IGeoJSON, GeometryFactory } from "..";
 
-/** @category Features */
+/** @category features */
 export default class Feature implements IFeature {
     id: number = 0;
     geometry: Geometry;
